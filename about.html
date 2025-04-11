@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+  ==============================================
+  DOCUMENT INFO
+  ==============================================
+  About page that showcases personal information,
+  skills, and experience.
+-->
+
+<head>
+    <!-- Basic page settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- What appears in the browser tab -->
+    <title>Humaira | About</title>
+    <!-- Add favicon with correct path -->
+    <link rel="icon" href="/assets/code.png" type="image/png">
+    
+    <!-- Connect our styling file (CSS) -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- 
+      Load fonts and icons for our modern design
+      - Adds contemporary fonts
+      - Includes FontAwesome for trendy icons
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;600&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3b32d9ccda.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="about-page">
+    <!-- 
+      ==============================================
+      MODERN NAVIGATION
+      ==============================================
+      Separate brand and navigation without an overall container
+    -->
+    <nav class="navbar">
+        <!-- Brand identity with animated dot in its own container - now links to home -->
+        <a href="index.html" class="brand-link">
+            <div class="brand-container">
+                <div class="brand-text">Humaira<span class="dot">.</span></div>
+                <div class="brand-tagline">Back to home</div>
+            </div>
+        </a>
+        
+        <!-- Navigation links in their own container - Home button removed -->
+        <div class="nav-links">
+            <a href="work.html" class="nav-link">
+                <span class="nav-text">Work</span>
+            </a>
+            <a href="about.html" class="nav-link active">
+                <span class="nav-text">About</span>
+            </a>
+            <a href="connect.html" class="nav-link">
+                <span class="nav-text">Connect</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- 
+      ==============================================
+      ABOUT HEADER
+      ==============================================
+    -->
+    <header class="about-header">
+        <div class="header-content">
+            <h1 class="page-title">About Me</h1>
+            <p class="header-description">Learn more about my journey, skills, and background</p>
+        </div>
+    </header>
+    
+    <!-- 
+      ==============================================
+      BIOGRAPHY SECTION
+      ==============================================
+    -->
+    <section class="bio-section">
+        <div class="bio-container">
+            <div class="bio-image">
+                <!-- Replace the placeholder with actual image -->
+                <img src="/assets/humaira.jpg" alt="Humaira Ambreen" class="profile-image">
+            </div>
+            <div class="bio-content">
+                <h2>Hello, I'm Humaira Ambreen</h2>
+                <p class="bio-intro">
+                    I'm a software developer with a passion for creating beautiful, functional, and user-friendly applications. 
+                    I specialize in building modern applications using the latest technologies and frameworks,
+                    and I love to explore new tools and techniques that enhance my workflow and productivity.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 
+      ==============================================
+      SKILLS SECTION
+      ==============================================
+    -->
+    <section class="skills-section">
+        <div class="section-title">
+            <h2>My Skills</h2>
+            <p>Technologies and tools I work with</p>
+        </div>
+        
+        <div class="skills-container">
+            <!-- Skill Categories -->
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-code"></i> Frontend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-server"></i> Backend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express</span>
+                    <span class="skill-tag">Python</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-database"></i> Databases</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Firebase</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    
+    <!-- 
+      ==============================================
+      EDUCATION SECTION
+      ==============================================
+    -->
+    <section class="education-section">
+        <div class="section-title">
+            <h2>Education</h2>
+            <p>My academic background and professional training</p>
+        </div>
+        
+        <div class="education-cards">
+            
+            <!-- College Education -->
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="education-details">
+                    <h3>BTech in Computer Science</h3>
+                    <h4>Krishna Engineering College</h4>
+                    <div class="education-year">2022 - Present (3rd Year)</div>
+                    <p class="education-description">Pursuing Bachelor of Technology in Computer Science, focusing on software development, algorithms, and advanced programming concepts.</p>
+                </div>
+            </div>
+            
+            <!-- Professional Training -->
+            <div class="education-card">
+                <div class="education-icon">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <div class="education-details">
+                    <h3>Frontend Development</h3>
+                    <h4>Digital Shakha</h4>
+                    <div class="education-year">2024</div>
+                    <p class="education-description">Specialized training in modern frontend technologies, including responsive design principles, JavaScript frameworks, and UI/UX best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 
+      ==============================================
+      FOOTER
+      ==============================================
+    -->
+    <footer class="page-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="brand-text">Humaira<span class="dot">.</span></div>
+            </div>
+
+            <div class="footer-copyright">
+                &copy; 2025 Humaira Ambreen. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Connect our JavaScript for the interactive effects -->
+    <script src="script.js"></script>
+</body>
+</html>
