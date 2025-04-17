@@ -84,4 +84,4 @@ The website features custom animations, responsive design, and interactive eleme
 
 ##  License
 
-© 2025 Humaira Ambreen. All rights reserved.
+© 2025 Humaira Ambreen.
