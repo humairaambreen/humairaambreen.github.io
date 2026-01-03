@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support | Humaira Ambreen</title>
+  <meta name="description" content="Support Humaira Ambreen - Show your appreciation with a tip or donation">
+  <meta name="keywords" content="Humaira Ambreen, support, donate, tip">
+  <meta name="author" content="Humaira Ambreen">
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&family=Playfair+Display:wght@400;700&display=swap");
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --color-background: rgb(90, 100, 80);
+      --color-foreground: rgb(230, 225, 215);
+      --color-accent: rgb(200, 180, 160);
+      --color-border: rgba(200, 180, 160, 0.3);
+      --font-primary: "Inter", sans-serif;
+      --font-secondary: "IBM Plex Mono", monospace;
+      --margin: 32px;
+      --gutter: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow: auto;
+      font-family: var(--font-primary);
+      background: var(--color-background);
+      color: var(--color-foreground);
+      transition: background-color 0.8s ease;
+    }
+
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--color-background);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      transition: background-color 0.6s ease;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--color-foreground);
+      transition: background-color 0.6s ease;
+      will-change: width, background-color;
+    }
+
+    .percentage {
+      position: fixed;
+      bottom: var(--margin);
+      right: var(--margin);
+      font-family: var(--font-primary);
+      font-weight: 700;
+      font-size: clamp(8rem, 20vw, 25rem);
+      line-height: 0.8;
+      color: var(--color-foreground);
+      opacity: 0.1;
+      transition: color 0.6s ease;
+      will-change: color;
+    }
+
+    .text-container {
+      height: 3em;
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0;
+      width: 200px;
+    }
+
+    .loading-text {
+      font-family: var(--font-primary);
+      font-weight: 300;
+      color: var(--color-foreground);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+
+    .loading-text.initial {
+      transform: translateY(0);
+    }
+
+    .loading-text.complete {
+      transform: translateY(100%);
+    }
+
+    .loading-text .char {
+      display: inline-block;
+      transition: color 0.6s ease;
+      will-change: color;
+    }
+
+    .support-container {
+      min-height: 100vh;
+      padding: var(--margin);
+      visibility: hidden;
+      overflow: visible;
+    }
+
+    #bottomBlur {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.04) 35%,
+          rgba(255, 255, 255, 0.02) 60%,
+          transparent 100%);
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      pointer-events: none;
+      z-index: 1000;
+      mask-image: linear-gradient(to top, black 0%, black 8%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, black 8%, transparent 100%);
+      border-top: 1px solid rgba(44, 36, 22, 0.04);
+      box-shadow: 0 -8px 24px rgba(44, 36, 22, 0.06);
+    }
+
+    header {
+      margin-bottom: 3rem;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    header .tagline {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 400;
+      color: var(--color-accent);
+      font-family: var(--font-primary);
+      letter-spacing: 0.02em;
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 150px;
+      gap: var(--gutter);
+      max-width: 1800px;
+      margin: 0 auto 4rem;
+    }
+
+    .bento-item {
+      background: transparent;
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      padding: 2rem;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bento-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(230, 225, 215, 0.15) 0%,
+          transparent 50%);
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bento-item:hover::before {
+      opacity: 1;
+    }
+
+    .bento-item>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* QR Code Card */
+    .qr-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200, 180, 160, 0.08);
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .qr-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--color-foreground);
+      text-align: center;
+    }
+
+    .qr-card .qr-code {
+      width: 180px;
+      height: 180px;
+      background: white;
+      padding: 0.6rem;
+      border-radius: 12px;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-card .qr-code img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .qr-card .upi-id {
+      font-family: var(--font-secondary);
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      background: rgba(200, 180, 160, 0.15);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      user-select: all;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .qr-card .upi-id:hover {
+      background: rgba(200, 180, 160, 0.25);
+      border-color: var(--color-accent);
+    }
+
+    /* Tipping Options Card */
+    .tips-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: rgba(200, 180, 160, 0.06);
+      grid-column: span 6;
+      grid-row: span 2;
+    }
+
+    .tips-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      color: var(--color-foreground);
+    }
+
+    .tip-amounts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .tip-btn {
+      padding: 0.5rem 0.8rem;
+      background: rgba(200, 180, 160, 0.15);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-foreground);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: var(--font-primary);
+      line-height: 1;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tip-btn:hover,
+    .tip-btn.selected {
+      background: rgba(200, 180, 160, 0.35);
+      border-color: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    .custom-tip {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .custom-tip input {
+      flex: 1;
+      padding: 0.5rem 0.8rem;
+      background: rgba(200, 180, 160, 0.15);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-foreground);
+      font-size: 0.95rem;
+      font-family: var(--font-primary);
+      outline: none;
+      transition: all 0.3s ease;
+      line-height: 1;
+      height: 40px;
+    }
+
+    .custom-tip input:focus {
+      background: rgba(200, 180, 160, 0.25);
+      border-color: var(--color-accent);
+    }
+
+    .custom-tip input::placeholder {
+      color: rgba(230, 225, 215, 0.5);
+    }
+
+    /* Three.js Card */
+    .threejs-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(100, 110, 90, 0.15), rgba(60, 66, 55, 0.9));
+      cursor: move;
+      grid-column: span 3;
+      grid-row: span 2;
+      padding: 0;
+    }
+
+    #threejs-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .threejs-overlay {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      color: var(--color-foreground);
+      font-size: 0.75rem;
+      opacity: 0.6;
+      pointer-events: none;
+      font-family: var(--font-secondary);
+    }
+
+    /* H Image Card */
+    .h-image-card {
+      padding: 0;
+      grid-column: span 4;
+      grid-row: span 3;
+      overflow: hidden;
+    }
+
+    .bento-image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bento-image .default-img {
+      opacity: 1;
+      z-index: 1;
+      transform: scale(1);
+    }
+
+    .bento-image .hover-img {
+      opacity: 0;
+      z-index: 2;
+      transform: scale(1.05);
+    }
+
+    .bento-item:hover .bento-image .default-img {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+
+    .bento-item:hover .bento-image .hover-img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* International Support Card */
+    .international-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(200, 180, 160, 0.12), rgba(100, 110, 90, 0.08));
+      text-align: center;
+      grid-column: span 8;
+      grid-row: span 3;
+    }
+
+    .international-card h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--color-foreground);
+    }
+
+    .international-card p {
+      font-size: 1rem;
+      color: rgba(230, 225, 215, 0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .buymeacoffee-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.2rem 2rem;
+      background: #FFDD00;
+      color: #000000;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .buymeacoffee-btn:hover {
+      background: #FFED4E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .buymeacoffee-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Thank You Card */
+    .thankyou-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(230, 225, 215, 0.03), rgba(100, 110, 90, 0.06));
+      text-align: center;
+      grid-column: span 12;
+      grid-row: span 3;
+      font-family: 'Playfair Display', var(--font-primary);
+    }
+
+    .thankyou-card .quote {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.3;
+      max-width: 800px;
+      font-weight: 400;
+      color: rgba(230, 225, 215, 0.95);
+      position: relative;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .thankyou-card .quote::before {
+      content: '\201C';
+      font-size: 5rem;
+      position: absolute;
+      left: -30px;
+      top: -20px;
+      color: var(--color-accent);
+      opacity: 0.95;
+      font-family: 'Playfair Display', var(--font-primary);
+      line-height: 1;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--color-border);
+      margin-top: 4rem;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: visible;
+      min-height: 60vh;
+      background-image: radial-gradient(circle at 20% 50%, rgba(230, 225, 215, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(230, 225, 215, 0.03) 0%, transparent 50%);
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulance type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    footer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(230, 225, 215, 0.08),
+          transparent 40%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    footer:hover::after {
+      opacity: 1;
+    }
+
+    footer .footer-name {
+      font-size: clamp(5rem, 20vw, 25rem);
+      font-weight: 700;
+      line-height: 0.8;
+      color: var(--color-foreground);
+      text-align: center;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      margin: 0;
+      padding: 8rem 0;
+      padding-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer .footer-name .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100px);
+    }
+
+    footer .footer-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem var(--margin);
+      border-top: 1px solid var(--color-border);
+      z-index: 2;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    footer .footer-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    footer .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1.5px solid var(--color-border);
+      border-radius: 50px;
+      color: var(--color-foreground);
+      font-family: var(--font-secondary);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    footer .footer-btn:hover {
+      background: rgba(230, 225, 215, 0.1);
+      border-color: var(--color-foreground);
+    }
+
+    footer .footer-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    footer .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    footer .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 50%;
+      color: var(--color-foreground);
+      transition: all 0.3s ease;
+    }
+
+    footer .footer-social a:hover {
+      background: rgba(230, 225, 215, 0.1);
+      border-color: var(--color-foreground);
+    }
+
+    footer .footer-social svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .char {
+      display: inline-block;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+      :root {
+        --margin: 3rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1.2rem;
+      }
+
+      .qr-card,
+      .tips-card {
+        grid-column: span 8;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --margin: 2rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 180px;
+        gap: 1rem;
+      }
+
+      .qr-card,
+      .tips-card,
+      .international-card,
+      .thankyou-card {
+        grid-column: span 4;
+      }
+
+      .tip-amounts {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --margin: 1rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 0.75rem;
+      }
+
+      .bento-item {
+        grid-column: span 1 !important;
+        min-height: 220px;
+      }
+
+      .qr-card,
+      .tips-card {
+        grid-row: span 5;
+      }
+
+      .tip-amounts {
+        grid-template-columns: 1fr;
+      }
+
+      footer .footer-name {
+        font-size: clamp(4.5rem, 12vw, 8rem);
+        padding: 3rem 0 1.5rem;
+      }
+
+      footer .footer-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        padding: 1rem var(--margin);
+      }
+
+      footer .footer-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      footer .footer-btn {
+        flex: 1;
+        padding: 0.8rem;
+        font-size: 0.8rem;
+        justify-content: center;
+      }
+
+      footer .footer-social {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="preloader">
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="text-container">
+      <div class="loading-text initial">Loading</div>
+      <div class="loading-text complete">Complete</div>
+    </div>
+    <div class="percentage">0</div>
+  </div>
+  <div id="bottomBlur"></div>
+
+  <div class="support-container">
+    <header>
+      <h1>Support</h1>
+      <p class="tagline">Your support means the world</p>
+    </header>
+
+    <div class="bento-grid">
+      <!-- QR Code Card -->
+      <div class="bento-item qr-card">
+        <h3>Scan to Pay (UPI)</h3>
+        <div class="qr-code" id="qrCode"></div>
+        <div class="upi-id" title="Click to copy">hussainhuma2004@oksbi</div>
+      </div>
+
+      <!-- Tipping Options Card -->
+      <div class="bento-item tips-card">
+        <h3>Quick Tip Amounts</h3>
+        <div class="tip-amounts">
+          <button class="tip-btn" data-amount="50">₹50</button>
+          <button class="tip-btn" data-amount="100">₹100</button>
+          <button class="tip-btn" data-amount="200">₹200</button>
+          <button class="tip-btn" data-amount="500">₹500</button>
+          <button class="tip-btn" data-amount="1000">₹1000</button>
+          <button class="tip-btn" data-amount="2000">₹2000</button>
+        </div>
+        <div class="custom-tip">
+          <input type="number" id="customAmount" placeholder="Enter custom amount (₹)" min="1">
+        </div>
+        <p style="font-size: 0.9rem; color: rgba(230, 225, 215, 0.7); margin-top: 1rem;">Select an amount above or
+          enter a custom tip to generate a payment link</p>
+      </div>
+
+      <!-- Three.js Card -->
+      <div class="bento-item threejs-card">
+        <canvas id="threejs-canvas"></canvas>
+      </div>
+
+      <!-- International Support Card -->
+      <div class="bento-item international-card">
+        <h3>International Payments</h3>
+        <p>For supporters outside India, you can buy me a coffee through the international platform</p>
+        <a href="https://www.buymeacoffee.com/humairaambreen" target="_blank" rel="noopener noreferrer"
+          class="buymeacoffee-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z" />
+          </svg>
+          Buy Me a Coffee
+        </a>
+      </div>
+
+      <!-- H Image Card -->
+      <div class="bento-item h-image-card">
+        <div class="bento-image">
+          <img src="../assets/h.jpeg" alt="Creative Work" class="default-img">
+          <img src="../assets/covers/h.gif" alt="Design Process" class="hover-img">
+        </div>
+      </div>
+
+      <!-- Thank You Card -->
+      <div class="bento-item thankyou-card">
+        <div class="quote">Thank you for your generosity and support. It truly makes a difference!</div>
+      </div>
+    </div>
+
+    <footer>
+      <h2 class="footer-name">HUMAIRA <br> AMBREEN</h2>
+
+      <div class="footer-actions">
+        <!-- Navigation buttons -->
+        <div class="footer-nav">
+          <button class="footer-btn" id="scrollToTop">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 19V5M5 12l7-7 7 7" />
+            </svg>
+            Top
+          </button>
+
+          <a href="/" class="footer-btn">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <path d="M9 22V12h6v10" />
+            </svg>
+            Home
+          </a>
+        </div>
+
+        <!-- Social icons -->
+        <div class="footer-social">
+          <a href="https://github.com/humairaambreen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+            </svg>
+          </a>
+
+          <a href="mailto:hussainhuma2004@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <path d="M22 6l-10 7L2 6" />
+            </svg>
+          </a>
+
+          <a href="https://linkedin.com/in/humairaambreen" target="_blank" rel="noopener noreferrer"
+            aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
+  <script src='https://unpkg.com/split-type'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+
+  <script>
+    // UPI Configuration
+    const upiId = "hussainhuma2004@oksbi";
+    const payeeName = "Humaira Ambreen";
+
+    // Generate initial QR Code (without amount)
+    const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&cu=INR`;
+    
+    new QRCode(document.getElementById('qrCode'), {
+      text: upiUrl,
+      width: 180,
+      height: 180,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Copy UPI ID on click
+    document.querySelector('.upi-id').addEventListener('click', function () {
+      navigator.clipboard.writeText(upiId).then(() => {
+        const original = this.textContent;
+        this.textContent = '✓ Copied!';
+        setTimeout(() => {
+          this.textContent = original;
+        }, 2000);
+      });
+    });
+
+    // Function to generate QR code with amount
+    function generateQRCode(amount) {
+      if (amount <= 0) return;
+
+      // Clear existing QR code
+      document.getElementById('qrCode').innerHTML = '';
+
+      // Create UPI URL with amount
+      const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&am=${amount}&cu=INR`;
+
+      // Generate new QR code with adjusted size
+      new QRCode(document.getElementById('qrCode'), {
+        text: upiUrl,
+        width: 180,
+        height: 180,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      // Try to open UPI app on mobile
+      if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        window.location.href = upiUrl;
+      }
+    }
+
+    // Tip buttons functionality
+    const tipButtons = document.querySelectorAll('.tip-btn');
+    const customAmountInput = document.getElementById('customAmount');
+
+    tipButtons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        const amount = this.getAttribute('data-amount');
+        
+        // Toggle functionality - if already selected, deselect and reset QR
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+          // Reset to default QR code (no amount)
+          document.getElementById('qrCode').innerHTML = '';
+          const defaultUpiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(payeeName)}&cu=INR`;
+          new QRCode(document.getElementById('qrCode'), {
+            text: defaultUpiUrl,
+            width: 180,
+            height: 180,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+          });
+        } else {
+          // Remove selected class from all buttons
+          tipButtons.forEach(b => b.classList.remove('selected'));
+          // Add selected class to clicked button
+          this.classList.add('selected');
+          // Clear custom amount
+          customAmountInput.value = '';
+          // Generate QR with amount
+          generateQRCode(amount);
+        }
+      });
+    });
+
+    // Custom amount input - updates QR code in real-time
+    customAmountInput.addEventListener('input', function () {
+      // Remove selected class from all buttons
+      tipButtons.forEach(b => b.classList.remove('selected'));
+
+      if (this.value && this.value > 0) {
+        generateQRCode(this.value);
+      }
+    });
+
+    // Three.js Scene
+    const canvas = document.getElementById('threejs-canvas');
+    if (canvas) {
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      const DPR_CAP = 2.5;
+      const initialDPR = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+      renderer.setPixelRatio(initialDPR);
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+      renderer.setClearColor(0x000000, 0);
+
+      // Create an icosahedron (geometric sphere) with particles
+      const geometry = new THREE.IcosahedronGeometry(15, 1);
+      const material = new THREE.MeshBasicMaterial({ color: 0xc8b4a0, wireframe: true });
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      // Add particles around the geometry
+      const particlesGeometry = new THREE.BufferGeometry();
+      const particlesCount = 100;
+      const posArray = new Float32Array(particlesCount * 3);
+      
+      for(let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 50;
+      }
+      
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.15,
+        color: 0xc8b4a0,
+        transparent: true,
+        opacity: 0.8
+      });
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      camera.position.z = 35;
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let targetRotationX = 0;
+      let targetRotationY = 0;
+      let isHovering = false;
+
+      canvas.addEventListener('mousemove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        isHovering = true;
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        isHovering = false;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        if (isHovering) {
+          targetRotationX = mouseY * 1.5;
+          targetRotationY = mouseX * 1.5;
+        } else {
+          targetRotationX += 0.003;
+          targetRotationY += 0.005;
+        }
+
+        mesh.rotation.x += (targetRotationX - mesh.rotation.x) * 0.05;
+        mesh.rotation.y += (targetRotationY - mesh.rotation.y) * 0.05;
+
+        // Rotate particles slowly
+        particlesMesh.rotation.y += 0.001;
+        particlesMesh.rotation.x += 0.0005;
+
+        // Gentle pulsing effect
+        const scale = 1 + Math.sin(Date.now() * 0.0008) * 0.08;
+        mesh.scale.set(scale, scale, scale);
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+        const newDPR = Math.min(window.devicePixelRatio || 1, DPR_CAP);
+        renderer.setPixelRatio(newDPR);
+
+        if (canvas.clientWidth && canvas.clientHeight) {
+          camera.aspect = canvas.clientWidth / canvas.clientHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+        }
+      });
+    }
+
+    // Mouse glow effect for cards
+    if (window.matchMedia('(hover: hover)').matches) {
+      const cards = document.querySelectorAll('.bento-item');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          card.style.setProperty('--mouse-x', `${x}%`);
+          card.style.setProperty('--mouse-y', `${y}%`);
+        });
+      });
+    }
+
+    // GSAP Preloader Animation
+    const loadingText = new SplitType(".loading-text.initial", { types: "chars" });
+    const completeText = new SplitType(".loading-text.complete", { types: "chars" });
+    const headerTitle = new SplitType("header h1", { types: "chars" });
+    const headerTagline = new SplitType("header .tagline", { types: "chars" });
+
+    gsap.set(".loading-text.complete", { y: "100%" });
+    gsap.set(loadingText.chars, { opacity: 0, y: 100 });
+    gsap.set(completeText.chars, { opacity: 0, y: 100 });
+    gsap.set([headerTitle.chars, headerTagline.chars], { opacity: 0, y: 50 });
+
+    gsap.to(loadingText.chars, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.05,
+      ease: "power2.out"
+    });
+
+    const colorStages = [
+      { bg: "rgb(60, 66, 55)", text: "rgb(230, 225, 215)" },
+      { bg: "rgb(200, 180, 160)", text: "rgb(60, 66, 55)" },
+      { bg: "rgb(230, 225, 215)", text: "rgb(60, 66, 55)" },
+      { bg: "rgb(100, 110, 90)", text: "rgb(230, 225, 215)" }
+    ];
+
+    let lastStage = -1;
+    function updateColors(progress) {
+      const stage = Math.floor(progress / 25);
+      if (stage < colorStages.length && stage !== lastStage) {
+        lastStage = stage;
+        gsap.to(".preloader", {
+          backgroundColor: colorStages[stage].bg,
+          duration: 0.6,
+          ease: "power1.inOut"
+        });
+
+        gsap.to(".progress-bar", {
+          backgroundColor: colorStages[stage].text,
+          duration: 0.6,
+          ease: "power1.inOut"
+        });
+
+        gsap.to(".loading-text .char, .percentage", {
+          color: colorStages[stage].text,
+          duration: 0.6,
+          ease: "power1.inOut",
+          stagger: 0
+        });
+      }
+    }
+
+    const tl = gsap.timeline();
+
+    tl.to(".progress-bar", {
+      width: "100%",
+      duration: 5,
+      ease: "power1.inOut",
+      onUpdate: function () {
+        const progress = Math.round(this.progress() * 100);
+        document.querySelector(".percentage").textContent = progress;
+        updateColors(progress);
+      }
+    })
+      .to(".loading-text.initial", {
+        y: "-100%",
+        duration: 0.5,
+        ease: "power2.inOut"
+      })
+      .to(".loading-text.complete", {
+        y: "0%",
+        duration: 0.5,
+        ease: "power2.inOut"
+      }, "<")
+      .to(completeText.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        stagger: 0.03,
+        ease: "power2.out"
+      }, "<0.2")
+      .to(".preloader", {
+        y: "-100vh",
+        duration: 1,
+        ease: "power2.inOut",
+        delay: 0.8
+      })
+      .set(".support-container", {
+        visibility: "visible"
+      }, "-=1")
+      .to(headerTitle.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.03,
+        ease: "power4.out"
+      }, "-=0.5")
+      .to(headerTagline.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.02,
+        ease: "power4.out"
+      }, "-=0.4")
+      .to(".bento-item", {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.08,
+        ease: "power2.out"
+      }, "-=0.3")
+      .set(".preloader", {
+        display: "none"
+      });
+
+    gsap.set(".bento-item", { opacity: 0 });
+
+    // Custom Smooth Scroll
+    (function () {
+      const config = {
+        smoothFactor: 0.08,
+        touchSensitivity: 1,
+        inertiaMultiplier: 5,
+        inertiaDecay: 0.95
+      };
+
+      const body = document.body;
+      const preloader = document.querySelector('.preloader');
+
+      // Wrap all content except preloader
+      const container = document.createElement('div');
+      container.className = 'smooth-scroll-container';
+      const scroller = document.createElement('div');
+      scroller.className = 'smooth-scroll-scroller';
+
+      // Move all body children (except preloader) into scroller
+      const children = Array.from(body.children);
+      children.forEach(child => {
+        if (child !== preloader) {
+          scroller.appendChild(child);
+        }
+      });
+
+      container.appendChild(scroller);
+      if (preloader && preloader.parentNode === body) {
+        body.insertBefore(preloader, body.firstChild);
+        body.appendChild(container);
+      } else {
+        body.appendChild(container);
+      }
+
+      // Add required styles
+      const style = document.createElement('style');
+      style.textContent = `
+        body { overflow: hidden !important; }
+        .smooth-scroll-container { 
+          position: relative; 
+          height: 100vh; 
+          overflow: hidden; 
+        }
+        .smooth-scroll-scroller { 
+          position: absolute; 
+          left: 0; 
+          top: 0; 
+          width: 100%; 
+          will-change: transform;
+          transform: translateZ(0);
+        }
+      `;
+      document.head.appendChild(style);
+
+      // State variables
+      let targetY = 0;
+      let currentY = 0;
+      let maxScroll = 0;
+
+      // Helper functions
+      const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+      const lerp = (a, b, factor) => a + (b - a) * factor;
+      const round2 = v => Math.round(v * 100) / 100;
+
+      function updateBounds() {
+        maxScroll = Math.max(0, scroller.scrollHeight - window.innerHeight);
+        targetY = clamp(targetY, 0, maxScroll);
+        currentY = clamp(currentY, 0, maxScroll);
+      }
+
+      // Initialize
+      updateBounds();
+
+      // Animation loop
+      function animate() {
+        currentY = lerp(currentY, targetY, config.smoothFactor);
+        scroller.style.transform = `translate3d(0, -${round2(currentY)}px, 0)`;
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+
+      // Mouse wheel handler
+      let wheelTimeout;
+      function onWheel(e) {
+        e.preventDefault();
+        targetY += e.deltaY;
+        targetY = clamp(targetY, 0, maxScroll);
+
+        clearTimeout(wheelTimeout);
+        wheelTimeout = setTimeout(() => {
+          // Reserved for additional logic
+        }, 60);
+      }
+
+      // Touch handlers
+      let isTouchDown = false;
+      let lastTouchY = 0;
+      let touchVelocity = 0;
+      let lastTouchTime = 0;
+
+      function onTouchStart(e) {
+        isTouchDown = true;
+        lastTouchY = e.touches[0].clientY;
+        lastTouchTime = performance.now();
+        touchVelocity = 0;
+      }
+
+      function onTouchMove(e) {
+        if (!isTouchDown) return;
+        e.preventDefault();
+
+        const y = e.touches[0].clientY;
+        const delta = lastTouchY - y;
+        const now = performance.now();
+        const dt = now - lastTouchTime || 16;
+
+        touchVelocity = delta / dt * 16;
+        lastTouchY = y;
+        lastTouchTime = now;
+
+        targetY += delta * config.touchSensitivity;
+        targetY = clamp(targetY, 0, maxScroll);
+      }
+
+      function onTouchEnd() {
+        isTouchDown = false;
+
+        // Apply inertia
+        if (Math.abs(touchVelocity) > 0.2) {
+          let velocity = touchVelocity * config.inertiaMultiplier;
+
+          const applyInertia = () => {
+            velocity *= config.inertiaDecay;
+            targetY += velocity;
+            targetY = clamp(targetY, 0, maxScroll);
+
+            if (Math.abs(velocity) > 0.5) {
+              requestAnimationFrame(applyInertia);
+            }
+          };
+
+          requestAnimationFrame(applyInertia);
+        }
+      }
+
+      // Event listeners
+      window.addEventListener('resize', updateBounds);
+      container.addEventListener('wheel', onWheel, { passive: false });
+      container.addEventListener('touchstart', onTouchStart, { passive: true });
+      container.addEventListener('touchmove', onTouchMove, { passive: false });
+      container.addEventListener('touchend', onTouchEnd, { passive: true });
+
+      // Expose API
+      window.SmoothScroll = {
+        scrollTo: (y) => {
+          targetY = clamp(y, 0, maxScroll);
+        },
+        getPosition: () => currentY,
+        updateBounds: updateBounds
+      };
+    })();
+
+    // Footer name animation (updated for smooth scroll)
+    const footerName = new SplitType('.footer-name', { types: 'chars' });
+    
+    function checkScroll() {
+      const footer = document.querySelector('footer');
+      if (!footer) return;
+      
+      const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+      const triggerPoint = footer.offsetTop - window.innerHeight * 0.8;
+      
+      if (currentY >= triggerPoint && !footer.classList.contains('animated')) {
+        footer.classList.add('animated');
+        
+        gsap.to(footerName.chars, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: "power3.out"
+        });
+      }
+    }
+    
+    // Check scroll continuously for smooth scroll
+    function animateScroll() {
+      checkScroll();
+      requestAnimationFrame(animateScroll);
+    }
+    requestAnimationFrame(animateScroll);
+    
+    // Scroll to top button (updated for smooth scroll)
+    document.getElementById('scrollToTop').addEventListener('click', function () {
+      if (window.SmoothScroll) {
+        window.SmoothScroll.scrollTo(0);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+
+    // Footer spotlight effect
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.addEventListener('mousemove', (e) => {
+        const rect = footer.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        footer.style.setProperty('--mouse-x', `${x}%`);
+        footer.style.setProperty('--mouse-y', `${y}%`);
+      });
+
+      footer.addEventListener('mouseleave', () => {
+        footer.style.setProperty('--mouse-x', '50%');
+        footer.style.setProperty('--mouse-y', '50%');
+      });
+    }
+  </script>
+</body>
+
+</html>

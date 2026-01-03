@@ -1,0 +1,5142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humaira Ambreen | Creative Professional Portfolio</title>
+  <meta name="description"
+    content="Humaira Ambreen - Creative professional specializing in design, development, and digital innovation.">
+  <meta name="keywords" content="Humaira Ambreen, portfolio, creative professional, designer, developer">
+  <meta name="author" content="Humaira Ambreen">
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&family=Playfair+Display:wght@400;700&display=swap");
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* slightly darker than the preloader's final stage (rgb(100,110,90)) */
+      --color-background: rgb(90, 100, 80);
+      --color-foreground: rgb(230, 225, 215);
+      --color-accent: rgb(200, 180, 160);
+      --color-border: rgba(200, 180, 160, 0.3);
+      --font-primary: "Inter", sans-serif;
+      --font-secondary: "IBM Plex Mono", monospace;
+      --margin: 32px;
+      --gutter: 16px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      /* use native browser scrolling (removed transform-driven smooth scroller) */
+      overflow: auto;
+      font-family: var(--font-primary);
+      background: var(--color-background);
+      color: var(--color-foreground);
+      transition: background-color 0.8s ease;
+    }
+    
+    body.work-section-active {
+      background: rgb(0, 0, 0);
+    }
+
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--color-background);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+      transition: background-color 0.6s ease;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: var(--color-foreground);
+      transition: background-color 0.6s ease;
+      will-change: width, background-color;
+    }
+
+    .percentage {
+      position: fixed;
+      bottom: var(--margin);
+      right: var(--margin);
+      font-family: var(--font-primary);
+      font-weight: 700;
+      font-size: clamp(8rem, 20vw, 25rem);
+      line-height: 0.8;
+      color: var(--color-foreground);
+      opacity: 0.1;
+      transition: color 0.6s ease;
+      will-change: color;
+    }
+
+    .text-container {
+      height: 3em;
+      position: relative;
+      overflow: hidden;
+      margin: 20px 0;
+      width: 200px;
+    }
+
+    .loading-text {
+      font-family: var(--font-primary);
+      font-weight: 300;
+      color: var(--color-foreground);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+
+    .loading-text.initial {
+      transform: translateY(0);
+    }
+
+    .loading-text.complete {
+      transform: translateY(100%);
+    }
+
+    .loading-text .char {
+      display: inline-block;
+      transition: color 0.6s ease;
+      will-change: color;
+    }
+
+    .portfolio-container {
+      min-height: 100vh;
+      padding: var(--margin);
+      visibility: hidden;
+      overflow: visible;
+      will-change: transform;
+    }
+
+    /* Menu Overlay Styles */
+    .menu-toggle {
+      position: fixed;
+      top: var(--margin);
+      right: var(--margin);
+      width: 44px;
+      height: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-accent);
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 10001;
+      transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .menu-toggle:hover {
+      background: var(--color-foreground);
+      transform: translateY(-2px);
+    }
+
+    .menu-toggle span {
+      width: 29px;
+      height: 2px;
+      background: var(--color-background);
+      transition: all 0.4s ease;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: 10000;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      pointer-events: none;
+    }
+
+    .menu-overlay__bg-container {
+      /* Transparent so the main page shows through; we keep a slight darken/blur for legibility */
+      background: rgba(0,0,0,0.0);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      backdrop-filter: blur(6px) saturate(110%);
+      -webkit-backdrop-filter: blur(6px) saturate(110%);
+    }
+
+    .menu-overlay__content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-overlay__links {
+      background: rgba(29, 20, 4, 0.21);
+      backdrop-filter: blur(67px);
+      -webkit-backdrop-filter: blur(67px);
+      width: 100%;
+      max-width: 800px;
+      padding: 44px 30px;
+      display: flex;
+      gap: 30px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 20px;
+      margin: 0 var(--margin);
+    }
+
+    [data-text-anim] {
+      visibility: hidden;
+    }
+
+    .menu-overlay__main {
+      width: 100%;
+    }
+
+    .menu-overlay__main ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-overlay__main li {
+      margin-bottom: 10px;
+      transition: opacity 0.3s ease;
+      width: fit-content;
+      margin-inline: auto;
+    }
+
+    .menu-overlay__main li a {
+      color: var(--color-foreground);
+      font-family: var(--font-primary);
+      font-size: clamp(2rem, 4vw + 1rem, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-overlay__main:has(li:hover) li:not(:hover) {
+      opacity: 0.5;
+    }
+
+    .menu-overlay__socials ul {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: var(--color-foreground);
+      font-size: 1rem;
+      font-weight: 600;
+      
+    }
+
+    .menu-overlay__socials a {
+      color: var(--color-foreground);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .menu-overlay__socials a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Apply Work-section style to menu social links so they can use the same
+       per-character sliding hover animation (two stacked text layers). */
+    .menu-overlay__socials a {
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 1.02em;
+      line-height: 1.02;
+      vertical-align: middle;
+    }
+
+    .menu-overlay__socials a .text-wrap {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .menu-overlay__socials a .text-wrap:first-child {
+      position: relative;
+    }
+
+    #bottomBlur {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.04) 35%,
+          rgba(255, 255, 255, 0.02) 60%,
+          transparent 100%);
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      pointer-events: none;
+      z-index: 1000;
+      mask-image: linear-gradient(to top, black 0%, black 8%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, black 8%, transparent 100%);
+      border-top: 1px solid rgba(44, 36, 22, 0.04);
+      box-shadow: 0 -8px 24px rgba(44, 36, 22, 0.06);
+    }
+
+
+    header {
+      margin-bottom: 3rem;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    header .tagline {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 400;
+      color: var(--color-accent);
+      font-family: var(--font-primary);
+      letter-spacing: 0.02em;
+    }
+
+    /* BENTO GRID - Clean & Complete Layout */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 150px;
+      gap: var(--gutter);
+      max-width: 1800px;
+      margin: 0 auto 4rem;
+    }
+
+    .bento-item {
+      background: transparent;
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Hide cursor only on project cards with links */
+    .bento-item:has(.bento-link) {
+      cursor: none;
+    }
+    
+    .bento-item:has(.bento-link) .bento-link {
+      cursor: none;
+    }
+    
+    /* Custom cursor for bento cards */
+    .custom-cursor {
+      position: fixed;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(230, 225, 215, 0.9);
+      pointer-events: none;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      opacity: 0;
+    }
+    
+    .custom-cursor svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--color-background);
+      stroke-width: 2.5;
+      fill: none;
+      transform: scale(0);
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.1s;
+    }
+    
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    
+    .custom-cursor.active svg {
+      transform: scale(1);
+    }
+
+    .bento-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+          rgba(230, 225, 215, 0.15) 0%,
+          transparent 50%);
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bento-item:hover::before {
+      opacity: 1;
+    }
+
+    .bento-item>* {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* Image Container */
+    .bento-image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bento-image .default-img {
+      opacity: 1;
+      z-index: 1;
+      transform: scale(1);
+    }
+
+    .bento-image .hover-img {
+      opacity: 0;
+      z-index: 2;
+      transform: scale(1.05);
+    }
+
+    .bento-item:hover .bento-image .default-img {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+
+    .bento-item:hover .bento-image .hover-img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Force hover state for mobile double-tap */
+    .bento-item.force-hover .bento-image .default-img {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+
+    .bento-item.force-hover .bento-image .hover-img {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Mobile tap hint */
+    .tap-hint {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      color: var(--color-foreground);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .bento-item.force-hover .tap-hint {
+      opacity: 1;
+    }
+
+    /* KEC card: the grid item itself appears circular initially (clip-path),
+       then morphs back to a rounded rectangle on hover. This masks the entire
+       grid box so the visible shape is a circle until hovered. */
+    .bento-item.kec-card {
+      overflow: hidden;
+      /* start as a circular mask centered in the grid cell (adjust percent to change circle size) */
+      clip-path: circle(46% at 50% 50%);
+      border-radius: 50%;
+      /* make the mask open faster than the gif opacity so the gif is revealed in rectangular form */
+      transition: clip-path 180ms cubic-bezier(.2, .9, .2, 1), border-radius 180ms cubic-bezier(.2, .9, .2, 1), box-shadow 220ms ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-clip: padding-box;
+    }
+
+    .bento-item.kec-card .bento-image {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* inner wrapper used to control image sizing inside the mask */
+    .bento-item.kec-card .circle-inner {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      /* keep content circular while parent is masked */
+      border-radius: 50%;
+      transition: border-radius 420ms cubic-bezier(.2, .9, .2, 1), transform 420ms ease;
+      padding: 10%;
+      box-sizing: border-box;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.04));
+    }
+
+    .bento-item.kec-card .circle-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* keep a slightly slower opacity/transform so the parent mask finishes first */
+      transition: transform 420ms ease, opacity 260ms ease, border-radius 160ms ease;
+      display: block;
+      border-radius: 50%;
+    }
+
+    /* Hover: remove circular clip and restore rounded rectangle shape */
+    .bento-item.kec-card:hover {
+      /* expand mask quickly so hover content isn't clipped into a circle */
+      clip-path: inset(0 round 16px);
+      border-radius: 20px;
+    }
+
+    /* Make the inner content fill and become rectangular on hover */
+    .bento-item.kec-card:hover .circle-inner {
+      border-radius: 20px;
+      padding: 0;
+    }
+
+    .bento-item.kec-card:hover .circle-inner img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transform: scale(1.02);
+      /* remove the inner circular crop so the gif appears rectangular */
+      border-radius: 0;
+    }
+
+    /* Square wrapper that keeps an exact 1:1 aspect ratio using modern CSS */
+    .square {
+      width: 100%;
+      position: relative;
+      padding-top: 100%;
+      /* Creates 1:1 ratio */
+      box-sizing: border-box;
+      max-height: 100%;
+    }
+
+    .square .small-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 8px;
+      box-sizing: border-box;
+      padding: 4px 0px;
+      /* Minimum left/right padding for the tightest fit */
+    }
+
+    /* Social Links Card */
+    .bento-item.social-links-card {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+    }
+
+    /* Mini social cards styling (replaces image tiles) */
+    .square .small-grid .mini {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.2px solid var(--color-border);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+      cursor: pointer;
+    }
+
+    /* Anchor version (if mini is an <a>) keeps same visuals */
+    .square .small-grid a.mini {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .square .small-grid .mini svg {
+      width: 42px;
+      height: 42px;
+      fill: var(--color-foreground);
+      transition: transform 0.18s ease, fill 0.18s ease;
+    }
+
+    /* Rupee text fallback styling */
+    .square .small-grid .mini .rupee {
+      font-size: 50px;
+      font-weight: 700;
+      color: var(--color-foreground);
+      line-height: 1;
+      display: inline-block;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+
+    .square .small-grid .mini:hover {
+      background-color: rgba(200, 180, 160, 0.14);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+
+    /* About Card */
+    .about-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem;
+      background: rgba(200, 180, 160, 0.08);
+      border: 1.5px solid var(--color-border);
+      cursor: default;
+    }
+
+
+    .about-card h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-foreground);
+      text-transform: uppercase;
+    }
+
+    .about-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(230, 225, 215, 0.85);
+      margin-bottom: 2rem;
+    }
+
+    .about-buttons {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .about-button {
+      padding: 0.8rem 1.5rem;
+      background: rgba(200, 180, 160, 0.15);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-foreground);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .about-button:hover {
+      background: rgba(200, 180, 160, 0.25);
+      border-color: var(--color-accent);
+    }
+
+    .about-button.primary {
+      background: var(--color-accent);
+      color: var(--color-background);
+      border-color: var(--color-accent);
+      text-transform: uppercase;
+    }
+
+    .about-button.primary:hover {
+      background: var(--color-foreground);
+      border-color: var(--color-foreground);
+    }
+
+    /* Profile Stats Card */
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(200, 180, 160, 0.05);
+      border: 1.5px solid var(--color-border);
+      cursor: default;
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .profile-card:hover img {
+      opacity: 1;
+    }
+
+    /* GitHub Stats Cards - Specific styles for each */
+    .github-stats-card,
+    .github-activity-card,
+    .github-languages-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(200, 180, 160, 0.05);
+      border: 1.5px solid var(--color-border);
+      cursor: default;
+    }
+
+    .github-stats-card img,
+    .github-activity-card img,
+    .github-languages-card img {
+      width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .github-stats-card:hover img,
+    .github-activity-card:hover img,
+    .github-languages-card:hover img {
+      opacity: 1;
+    }
+
+    /* Frost Nova Game Card */
+    .frost-nova-card {
+      display: flex;
+      padding: 0;
+      background: #02102b;
+      border: 1.5px solid var(--color-border);
+      overflow: hidden;
+      cursor: default;
+    }
+
+    /* Profile Picture Card */
+    .profile-picture-card {
+      padding: 0;
+    }
+
+    .profile-picture-card .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+    }
+
+    /* GitHub Profile Card */
+    .github-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(200, 180, 160, 0.08), rgba(100, 110, 90, 0.08));
+      text-align: center;
+      border: 1.5px solid var(--color-border);
+    }
+
+    /* Profile variant: show a full-bleed profile image that links to GitHub */
+    .github-card.profile {
+      padding: 0;
+    }
+
+    .github-card.profile a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .github-card.profile .profile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 20px;
+    }
+
+    .github-card svg {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 1.5rem;
+      stroke: var(--color-accent);
+      opacity: 0.8;
+    }
+
+    .github-card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-foreground);
+    }
+
+    .github-card p {
+      font-size: 0.85rem;
+      color: rgba(230, 225, 215, 0.7);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-secondary);
+    }
+
+    .github-card p a {
+      color: var(--color-accent);
+      text-decoration: none;
+    }
+
+    .github-link {
+      padding: 0.7rem 1.3rem;
+      background: rgba(230, 225, 215, 0.1);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      color: var(--color-foreground);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Box Bot Card */
+    .boxbot-card {
+      position: relative;
+      overflow: hidden;
+      background: #1a1a1a;
+      cursor: default;
+    }
+
+    #boxbot-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Contact Card */
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, rgba(200, 180, 160, 0.12), rgba(100, 110, 90, 0.08));
+      text-align: center;
+      border: 1.5px solid var(--color-border);
+      cursor: default;
+    }
+
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: var(--color-foreground);
+      text-transform: uppercase;
+    }
+
+    .contact-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(230, 225, 215, 0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Minimal Location / Time Card (static, no JS required) */
+    .location-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem 1.2rem;
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      color: var(--color-foreground);
+      text-align: center;
+      gap: 0.4rem;
+      overflow: hidden;
+      background: transparent;
+      /* slideshow now provides imagery */
+    }
+
+    /* Simple icon sizing */
+    .location-card .loc-icon {
+      width: 48px;
+      height: 48px;
+      stroke: var(--color-foreground);
+      fill: none;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-card h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-foreground);
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-card .location-highlight {
+      display: inline-block;
+      background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 48%, #138808 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: 700;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .location-card .time {
+      font-size: 1.9rem;
+      font-weight: 600;
+      margin-top: 6px;
+      color: var(--color-foreground);
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-card .subtitle {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: rgba(230, 225, 215, 0.75);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Slideshow container for the location card (covers entire card) */
+    .location-card .location-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      /* keep hover events on the card itself */
+    }
+
+    .location-card .location-slideshow img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      transform-origin: 50% 50%;
+      opacity: 0;
+      filter: blur(6px);
+      transition:
+        opacity 700ms cubic-bezier(.2, .9, .2, 1),
+        transform 900ms cubic-bezier(.2, .9, .2, 1),
+        filter 700ms cubic-bezier(.2, .9, .2, 1);
+      will-change: opacity, transform, filter;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* Active slide fades in and sharpens (blur -> focus) */
+    .location-card .location-slideshow img.active {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0px);
+    }
+
+    /* Previous slide gently scales and stays blurred while fading out */
+    .location-card .location-slideshow img.prev {
+      opacity: 0;
+      transform: scale(1.04);
+      filter: blur(6px);
+    }
+
+    .location-card h3 {
+      font-size: 1.25rem;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* Tricolor tilted gradient for the word 'India' (saffron -> white -> green) */
+    .location-card .location-highlight {
+      display: inline-block;
+      background: linear-gradient(135deg, #FF9933 0%, #FFFFFF 48%, #138808 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      font-weight: 700;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .location-card .time {
+      font-size: 2.1rem;
+      font-weight: 500;
+      margin-top: 6px;
+      letter-spacing: 0.02em;
+      font-family: var(--font-primary);
+    }
+
+    .location-card .subtitle {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-weight: 500;
+    }
+
+    /* Hire Me / View Services Card */
+    .hire-card {
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hire-card .hire-link {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+    
+    .hire-card .hire-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hire-card .hire-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .hire-card .hire-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--color-foreground);
+      margin: 0;
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+    }
+    
+    .hire-card .hire-subtitle {
+      font-size: 1rem;
+      color: rgba(230, 225, 215, 0.7);
+      margin: 0;
+      transition: color 0.3s ease;
+    }
+    
+    .hire-card:hover .hire-subtitle {
+      color: rgba(230, 225, 215, 0.9);
+    }
+    
+    .hire-card .hire-arrow {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      align-self: center;
+    }
+    
+    .hire-card:hover .hire-arrow {
+      transform: translateY(8px);
+    }
+    
+    .hire-card .hire-arrow svg {
+      color: var(--color-foreground);
+      transform: rotate(90deg);
+    }
+
+    /* More Projects Soon Card */
+    .more-projects-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2\rem;
+    }
+    
+    .more-projects-content {
+      text-align: left;
+    }
+    
+    .more-projects-title {
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    
+    .more-projects-main {
+      display: block;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: var(--color-foreground);
+    }
+    
+    .more-projects-soon {
+      display: block;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: rgba(230, 225, 215, 0.35);
+      transition: all 0.6s ease;
+    }
+
+    .more-projects-card:hover .more-projects-soon {
+      letter-spacing: 0.08em;
+      transform: scale(1.02);
+      display: inline-block;
+    }
+
+    /* New contact actions layout (two large centered buttons) */
+    .contact-actions {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      max-width: 920px;
+      margin-top: 0.6rem;
+    }
+
+    .contact-action {
+      flex: 1 1 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 1.4rem 1.6rem;
+      background: rgba(200, 180, 160, 0.14);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      color: var(--color-foreground);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .contact-action svg {
+      width: 34px;
+      height: 34px;
+      stroke: var(--color-foreground);
+      opacity: 0.95;
+    }
+
+    .contact-action:hover {
+      background: rgba(200, 180, 160, 0.498);
+    }
+
+    /* Skill Card */
+    .skill-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.8rem 1rem;
+      /* reduced padding */
+      background: linear-gradient(135deg, rgba(200, 180, 160, 0.06), rgba(100, 110, 90, 0.06));
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      gap: 8px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Quote Card */
+    .quote-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.8rem;
+      background: linear-gradient(135deg, rgba(230, 225, 215, 0.03), rgba(100, 110, 90, 0.06));
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      text-align: center;
+      /* use Playfair Display for a classic quote look, falling back to the primary sans */
+      font-family: 'Playfair Display', var(--font-primary);
+      color: rgba(230, 225, 215, 0.95);
+    }
+
+    .quote-card .quote {
+      font-size: 1.45rem;
+      /* larger and more prominent */
+      line-height: 1.3;
+      max-width: 520px;
+      font-style: normal;
+      /* use the Playfair serifs instead of italic fallback */
+      font-weight: 400;
+      position: relative;
+      padding: 0.6rem 0.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .quote-card .quote:before {
+      content: "“";
+      font-size: 4.5rem;
+      position: absolute;
+      left: -24px;
+      top: -22px;
+      color: var(--color-accent);
+      opacity: 0.95;
+      font-family: 'Playfair Display', var(--font-primary);
+      line-height: 1;
+    }
+
+    .quote-card .author {
+      margin-top: 0.9rem;
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: var(--color-accent);
+      font-family: var(--font-primary);
+    }
+
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 4px;
+      border-radius: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+      cursor: pointer;
+    }
+
+    .skill-row:hover {
+
+      background: rgba(230, 225, 215, 0.02);
+    }
+
+    .skill-name {
+      font-weight: 700;
+      color: var(--color-foreground);
+      font-size: 1.05rem;
+      /* slightly larger */
+      min-width: 120px;
+    }
+
+    .skill-stars {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .skill-stars .star {
+      font-size: 22px;
+      /* larger stars */
+      color: rgba(230, 225, 215, 0.12);
+      line-height: 1;
+      transition: transform 0.12s ease, color 0.12s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .skill-stars .star.filled {
+      color: var(--color-accent);
+      transform: scale(1.03);
+    }
+
+    /* half-filled star using background-clip on text for wide browser support */
+    .skill-stars .star.half {
+      color: transparent;
+      background: linear-gradient(90deg, var(--color-accent) 50%, rgba(230, 225, 215, 0.12) 50%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .skill-level {
+      font-family: var(--font-secondary);
+      font-size: 1rem;
+      /* larger numeric */
+      color: rgba(230, 225, 215, 0.8);
+      min-width: 44px;
+      text-align: right;
+    }
+
+    footer {
+      position: relative;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--color-border);
+      margin-top: 4rem;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      overflow: visible;
+      min-height: 60vh;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(230, 225, 215, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(230, 225, 215, 0.03) 0%, transparent 50%);
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulance type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    footer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(230, 225, 215, 0.08),
+        transparent 40%
+      );
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    footer:hover::after {
+      opacity: 1;
+    }
+
+    footer .footer-name {
+      font-size: clamp(5rem, 20vw, 25rem);
+      font-weight: 700;
+      line-height: 0.8;
+      color: var(--color-foreground);
+      text-align: center;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      margin: 0;
+      padding: 8rem 0;
+      padding-top: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    footer .footer-name .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    
+    footer .footer-actions {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem var(--margin);
+      border-top: 1px solid var(--color-border);
+      z-index: 2;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    footer .footer-nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    footer .footer-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: transparent;
+      border: 1.5px solid var(--color-border);
+      border-radius: 50px;
+      color: var(--color-foreground);
+      font-family: var(--font-secondary);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    footer .footer-btn:hover {
+      background: rgba(230, 225, 215, 0.1);
+      border-color: var(--color-foreground);
+    }
+    
+    footer .footer-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    
+    footer .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    footer .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid var(--color-border);
+      border-radius: 50%;
+      color: var(--color-foreground);
+      transition: all 0.3s ease;
+    }
+    
+    footer .footer-social a:hover {
+      background: rgba(230, 225, 215, 0.1);
+      border-color: var(--color-foreground);
+    }
+    
+    footer .footer-social svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+    }
+    
+    footer .footer-support {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    footer .footer-support .support-btn {
+      background: rgba(230, 225, 215, 0.05);
+      border-color: var(--color-accent);
+    }
+    
+    footer .footer-support .support-btn:hover {
+      background: rgba(230, 225, 215, 0.15);
+      border-color: var(--color-foreground);
+    }
+
+    .char {
+      display: inline-block;
+    }
+
+    /* 01WORK section styles */
+    .work-section {
+      padding: 5rem var(--margin);
+      border-top: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-foreground);
+    }
+
+    .work-step {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+      padding: 3.2rem 0;
+      border-bottom: 1px solid rgba(230, 225, 215, 0.04);
+      scroll-margin-top: 100px;
+    }
+
+    .work-step .step-label {
+      width: 110px;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .work-step .step-content {
+      flex: 1 1 auto;
+    }
+
+    .work-step h2 {
+      margin: 0 0 0.6rem 0;
+      font-size: clamp(28px, 5.2vw, 56px);
+      line-height: 1.02;
+      color: var(--color-foreground);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    /* Text hover effect wrapper */
+    .work-step h2 a {
+      color: var(--color-foreground);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 180ms ease;
+      overflow: hidden;
+      display: inline-block;
+      position: relative;
+      height: 1.02em;
+      line-height: 1.02;
+    }
+
+    .work-step h2 a .text-wrap {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .work-step h2 a .text-wrap:first-child {
+      position: relative;
+    }
+
+    .work-step h2 a:hover {
+      color: var(--color-accent);
+    }
+
+    /* Paragraph link styling inside work section */
+    .work-step p a {
+      color: var(--color-foreground);
+      text-decoration: underline dotted rgba(230, 225, 215, 0.22);
+      transition: color 160ms ease, text-decoration-color 160ms ease;
+    }
+
+    .work-step p a:hover {
+      color: var(--color-accent);
+      text-decoration-color: rgba(200, 180, 160, 0.9);
+    }
+
+    .work-step p {
+      margin: 0;
+      max-width: 720px;
+      color: rgba(230, 225, 215, 0.82);
+      line-height: 1.6;
+      margin-top: 0.6rem;
+    }
+
+    /* Elegant link buttons for work entries */
+    .work-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .work-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(200, 180, 160, 0.08);
+      border: 1px solid rgba(200, 180, 160, 0.25);
+      border-radius: 6px;
+      color: var(--color-foreground);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 180ms ease;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .work-link-btn:hover {
+      background: rgba(200, 180, 160, 0.15);
+      border-color: rgba(200, 180, 160, 0.5);
+      color: var(--color-accent);
+    }
+
+    .work-link-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      opacity: 0.8;
+    }
+
+    .work-link-btn:hover svg {
+      opacity: 1;
+    }
+
+    /* 02 SERVICES - Horizontal scroll section */
+    .services-section {
+      position: relative;
+      padding: 5rem var(--margin) 0 var(--margin);
+      border-top: 1px solid var(--color-border);
+      overflow: visible;
+    }
+
+    .services-section .work-header {
+      margin-bottom: 1rem;
+    }
+
+    .services-container {
+      position: relative;
+      height: 100vh; /* Just needs to be tall enough for sticky positioning */
+      margin-top: -8rem; /* Pull cards closer to header */
+    }
+
+    .services-sticky-wrapper {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-start; /* Changed from center to flex-start */
+      padding-top: 30vh; /* Add some top padding for spacing */
+      padding-left: 0;
+      position: relative;
+    }
+    
+    .services-sticky-wrapper::before,
+    .services-sticky-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 30vh; /* Start below the header area */
+      bottom: 0;
+      width: 200px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .services-sticky-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, rgb(90, 100, 80), transparent);
+    }
+    
+    .services-sticky-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, rgb(90, 100, 80), transparent);
+    }
+    
+    /* Show right fade always, left fade only when scrolled */
+    .services-sticky-wrapper::after {
+      opacity: 1;
+    }
+    
+    .services-sticky-wrapper.scrolled::before {
+      opacity: 1;
+    }
+
+    .services-scroll-content {
+      display: flex;
+      gap: 3rem;
+      padding: 0;
+      will-change: transform;
+    }
+
+    .service-card {
+      flex-shrink: 0;
+      width: clamp(400px, 45vw, 600px);
+      background: rgba(200, 180, 160, 0.04);
+      border: 1.5px solid var(--color-border);
+      border-radius: 20px;
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .service-card .service-number {
+      font-size: 1rem;
+      color: var(--color-accent);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400;
+      margin: 0;
+      color: var(--color-foreground);
+      line-height: 1.1;
+    }
+
+    .service-card p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(230, 225, 215, 0.8);
+      margin: 0;
+    }
+
+    .service-card .service-features {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .service-card .service-features li {
+      padding-left: 1.5rem;
+      position: relative;
+      color: rgba(230, 225, 215, 0.75);
+      font-size: 0.95rem;
+    }
+
+    .service-card .service-features li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+    }
+
+    /* Mobile service navigation buttons */
+    .service-nav-btn {
+      display: none;
+    }
+
+
+
+    /* small meta text (dates/durations) under work titles */
+    .work-step .step-meta {
+      margin-top: 0.45rem;
+      color: rgba(230, 225, 215, 0.6);
+      font-size: 0.92rem;
+    }
+
+    .work-step .step-meta .months-count {
+      font-weight: 600;
+      color: var(--color-accent);
+      margin-left: 0.45rem;
+    }
+
+    /* Bento card overlay link so entire card is clickable */
+    .bento-item { position: relative; }
+    .bento-link {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: block;
+      background: transparent;
+      text-decoration: none;
+      /* keep focus outlines accessible */
+    }
+
+    /* Highlight animation when navigating from a card */
+    .work-step h2 {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Work header (big H1-like) */
+    .work-header {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      margin-bottom: 2.6rem;
+    }
+
+    .work-header .work-index {
+      font-family: var(--font-primary);
+      color: var(--color-accent);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      font-size: clamp(28px, 3.8vw, 56px);
+      line-height: 1;
+      transform: translateY(-2px);
+    }
+
+    .work-header .work-title {
+      font-size: clamp(34px, 6.6vw, 72px);
+      margin: 0;
+      color: var(--color-foreground);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    /* ========================================
+       RESPONSIVE STYLES
+       ======================================== */
+
+    /* Large Tablets and Small Desktops (1024px and below) */
+    @media (max-width: 1024px) {
+      :root {
+        --margin: 3rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(8, 1fr);
+        grid-auto-rows: 200px;
+        gap: 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 7vw, 4rem);
+      }
+
+      .hero p {
+        font-size: 1.15rem;
+      }
+
+      .work-section,
+      .services-section {
+        padding: 4rem var(--margin);
+      }
+
+      .service-card {
+        width: 70vw;
+        min-width: 500px;
+      }
+
+      footer .footer-name {
+        font-size: clamp(4rem, 15vw, 20rem);
+      }
+    }
+
+    /* Tablets (768px and below) */
+    @media (max-width: 768px) {
+      :root {
+        --margin: 2rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 180px;
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 10vh var(--margin) 6rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+      }
+
+      .hero p {
+        font-size: 1rem;
+        max-width: 100%;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero-button {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .work-section,
+      .services-section {
+        padding: 3rem var(--margin);
+      }
+
+      .work-header {
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .work-step {
+        gap: 1.2rem;
+        padding: 2rem 0;
+      }
+
+      .work-step .step-label {
+        width: 80px;
+        font-size: 0.75rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .work-step h2 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+      }
+
+      .work-step p {
+        font-size: 0.95rem;
+      }
+
+      .work-link-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .services-header {
+        min-width: 300px;
+      }
+
+      .service-card {
+        width: 80vw;
+        min-width: auto;
+        padding: 2rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+      }
+
+      .services-scroll-content {
+        gap: 3rem;
+      }
+
+      .contact-card h2 {
+        font-size: 1.75rem;
+      }
+
+      .contact-card p {
+        font-size: 0.95rem;
+      }
+
+      .contact-actions {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-action {
+        padding: 1.2rem 1.4rem;
+        font-size: 1rem;
+      }
+
+      footer .footer-name {
+        font-size: clamp(3rem, 12vw, 15rem);
+        padding: 6rem 0 2rem;
+      }
+
+      footer .footer-actions {
+        padding: 1.5rem var(--margin);
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      footer .footer-nav {
+        gap: 0.8rem;
+      }
+
+      footer .footer-btn {
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+      }
+
+      footer .footer-social {
+        gap: 0.8rem;
+      }
+
+      .footer-social-icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    /* Mobile Landscape and Small Tablets (640px and below) */
+    @media (max-width: 640px) {
+      :root {
+        --margin: 1.5rem;
+      }
+      .portfolio-container h1 {
+        font-size: 2rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+        gap: 0.8rem;
+      }
+
+      .hero {
+        padding: 8vh var(--margin) 4rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.75rem, 9vw, 2.5rem);
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+      }
+
+      .work-section,
+      .services-section {
+        padding: 2.5rem var(--margin);
+      }
+
+      .work-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .work-step {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1.5rem 0;
+      }
+
+      .work-step .step-label {
+        width: auto;
+        align-self: flex-start;
+      }
+
+      .work-step h2 {
+        font-size: 1.5rem;
+      }
+
+      .work-step p {
+        font-size: 0.9rem;
+      }
+
+      .work-links {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .work-link-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .service-card {
+        width: 85vw;
+        padding: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.25rem;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+      }
+
+      .services-scroll-content {
+        gap: 2.5rem;
+      }
+
+      .location-card h3 {
+        font-size: 1rem;
+      }
+
+      .location-card .time {
+        font-size: 1.5rem;
+      }
+
+      .skill-card h3 {
+        font-size: 1rem;
+      }
+
+      .skill-row {
+        font-size: 0.85rem;
+      }
+
+      .contact-card h2 {
+        font-size: 1.5rem;
+      }
+
+      .contact-card p {
+        font-size: 0.9rem;
+      }
+
+      .contact-action {
+        padding: 1rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .hire-card .hire-title {
+        font-size: 1.5rem;
+      }
+
+      .hire-card .hire-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .more-projects-main,
+      .more-projects-soon {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+      }
+
+      footer .footer-name {
+        font-size: clamp(2.5rem, 10vw, 10rem);
+        line-height: 0.8;
+        padding: 4rem 0 2rem;
+      }
+
+      footer .footer-actions {
+        padding: 1rem var(--margin);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+
+      footer .footer-nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      footer .footer-btn {
+        flex: 1;
+        padding: 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      footer .footer-social {
+        width: 100%;
+        justify-content: center;
+      }
+
+      footer .footer-support {
+        width: 100%;
+      }
+    }
+
+    /* Mobile Portrait (480px and below) */
+    @media (max-width: 480px) {
+      :root {
+        --margin: 1rem;
+      }
+
+      .portfolio-container {
+        padding-top: 4rem;
+      }
+
+      header {
+        margin-bottom: 2rem;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 0.75rem;
+      }
+
+      .bento-item {
+        grid-column: span 1 !important;
+        order: 99; /* Default high order for unspecified items */
+        min-height: 220px;
+      }
+
+      /* Make project cards square on mobile */
+      .kec-card,
+      .lostandfound-card,
+      .luveian-card {
+        aspect-ratio: 1 / 1;
+        height: auto;
+        min-height: unset;
+      }
+
+      /* Mobile card ordering */
+      .about-card {
+        order: 1;
+      }
+
+      .profile-picture-card {
+        order: 2;
+      }
+
+      .github-stats-card {
+        order: 3;
+      }
+
+      .github-activity-card {
+        order: 4;
+      }
+
+      .github-languages-card {
+        order: 5;
+      }
+
+      .boxbot-card {
+        order: 6;
+      }
+
+      .kec-card {
+        order: 7;
+      }
+
+      .lostandfound-card {
+        order: 8;
+      }
+
+      .luveian-card {
+        order: 9;
+      }
+
+      .skill-card {
+        order: 10;
+      }
+
+      .hire-card {
+        order: 11;
+      }
+
+      .contact-card {
+        order: 12;
+      }
+
+      .h-image-card {
+        order: 13;
+      }
+
+      .location-card {
+        order: 14;
+      }
+
+      .quote-card {
+        order: 15;
+      }
+
+      .social-links-card {
+        order: 16;
+      }
+
+      .more-projects-card {
+        order: 17;
+      }
+
+      .hero {
+        padding: 6vh var(--margin) 3rem;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+      }
+
+      .hero-button {
+        padding: 0.9rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .work-section,
+      .services-section {
+        padding: 2rem var(--margin);
+      }
+
+      /* Services section mobile fix */
+      .services-section {
+        overflow: visible;
+        min-height: 60vh;
+      }
+
+      .services-section .work-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+      }
+
+      .services-container {
+        height: auto;
+        margin-top: 0;
+        padding-bottom: 2rem;
+        min-height: 50vh;
+        position: relative;
+      }
+
+      .services-sticky-wrapper {
+        position: relative;
+        height: auto;
+        overflow-x: scroll;
+        overflow-y: visible;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(200, 180, 160, 0.3) transparent;
+        touch-action: pan-x pan-y;
+        display: block;
+      }
+
+      .services-sticky-wrapper::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      .services-sticky-wrapper::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .services-sticky-wrapper::-webkit-scrollbar-thumb {
+        background: rgba(200, 180, 160, 0.3);
+        border-radius: 2px;
+      }
+
+      .services-sticky-wrapper::before,
+      .services-sticky-wrapper::after {
+        display: none;
+      }
+
+      .services-scroll-content {
+        transform: none !important;
+        padding-bottom: 0.5rem;
+        display: flex;
+      }
+
+      .work-header .work-index {
+        font-size: clamp(24px, 8vw, 40px);
+      }
+
+      .work-header .work-title {
+        font-size: clamp(28px, 10vw, 50px);
+      }
+
+      .work-step h2 {
+        font-size: 1.25rem;
+      }
+
+      .work-step p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+
+      .work-step .step-meta {
+        font-size: 0.8rem;
+      }
+
+      .service-card {
+        width: 90vw;
+        padding: 1.25rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.15rem;
+      }
+
+      .service-card p {
+        font-size: 0.85rem;
+      }
+
+      .services-scroll-content {
+        gap: 2rem;
+      }
+
+      /* Show navigation buttons on mobile */
+      .service-nav-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1.5px solid var(--color-border);
+        border-radius: 50%;
+        color: var(--color-foreground);
+        cursor: pointer;
+        z-index: 100;
+        transition: all 0.3s ease;
+        margin-top: 2rem;
+      }
+
+      .service-nav-btn:active {
+        transform: translateY(-50%) scale(0.9);
+      }
+
+      .service-nav-left {
+        left: 0.5rem;
+      }
+
+      .service-nav-right {
+        right: 0.5rem;
+      }
+
+      .service-nav-btn svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .service-nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      .service-card {
+        width: calc(100vw - 140px);
+        min-width: auto;
+        aspect-ratio: 1 / 1;
+        padding: 1.5rem;
+        margin: 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .service-card .service-number {
+        font-size: 0.75rem;
+      }
+
+      .service-card h3 {
+        font-size: 1rem;
+        line-height: 1.2;
+        margin: 0.5rem 0;
+      }
+
+      .service-card p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        flex: 1;
+      }
+
+      .service-card .service-features {
+        margin: 0.5rem 0 0 0;
+      }
+
+      .service-card .service-features li {
+        font-size: 0.7rem;
+        padding-left: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .contact-card {
+        padding: 1.5rem;
+      }
+
+      .contact-card h2 {
+        font-size: 1.35rem;
+      }
+
+      .contact-card p {
+        font-size: 0.85rem;
+      }
+
+      .contact-action {
+        padding: 0.9rem 1rem;
+        font-size: 0.85rem;
+        gap: 0.6rem;
+      }
+
+      .contact-action svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .custom-cursor {
+        display: none;
+      }
+
+      .bento-item:has(.bento-link),
+      .bento-item:has(.bento-link) .bento-link {
+        cursor: pointer !important;
+      }
+
+      footer .footer-name {
+        font-size: clamp(4.5rem, 12vw, 8rem);
+        padding: 3rem 0 1.5rem;
+      }
+
+      footer .footer-btn {
+        padding: 0.7rem 0.6rem;
+        font-size: 0.75rem;
+        gap: 0.3rem;
+      }
+
+      footer .footer-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .footer-social-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      footer .footer-support {
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Menu Toggle Button -->
+  <div class="menu-toggle">
+    <span class="toggle-line-top"></span>
+    <span class="toggle-line-bottom"></span>
+  </div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay">
+    <div class="menu-overlay__bg-container"></div>
+    <div class="menu-overlay__content">
+      <div class="menu-overlay__links">
+        <div class="menu-overlay__main">
+          <ul>
+            <li>
+              <a id="scrollToTop" data-text-anim>HOME</a>
+            </li>
+            <li>
+              <a href="#work" data-text-anim>WORK</a>
+            </li>
+            <li>
+              <a href="#services" data-text-anim>SERVICES</a>
+            </li>
+            <li>
+              <a href="#contact" data-text-anim>CONTACT</a>
+            </li>
+            <li>
+              <a href="/support" data-text-anim>SUPPORT</a>
+            </li>
+          </ul>
+        </div>
+        <div class="menu-overlay__socials">
+          <ul>
+            <li>
+              <a href="https://github.com/humairaambreen" target="_blank" class="hover-text-effect" rel="noopener">
+                <div class="text-wrap">GitHub</div>
+                <div class="text-wrap">GitHub</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/humairaambreen" target="_blank" class="hover-text-effect" rel="noopener">
+                <div class="text-wrap">LinkedIn</div>
+                <div class="text-wrap">LinkedIn</div>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:hussainhuma2004@gmail.com" class="hover-text-effect">
+                <div class="text-wrap">Email</div>
+                <div class="text-wrap">Email</div>
+              </a>
+            </li>
+            <li>
+              <a href="https://calendly.com/humairaambreen" target="_blank" rel="noopener" class="hover-text-effect">
+                <div class="text-wrap">Schedule</div>
+                <div class="text-wrap">Schedule</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom cursor for bento cards -->
+  <div class="custom-cursor">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+  
+  <div class="preloader">
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="text-container">
+      <div class="loading-text initial">Loading</div>
+      <div class="loading-text complete">Complete</div>
+    </div>
+    <div class="percentage">0</div>
+  </div>
+  <div id="bottomBlur"></div>
+
+  <div class="portfolio-container">
+    <header>
+      <h1>Humaira Ambreen</h1>
+      <p class="tagline">Software developer <br>& Designer</p>
+    </header>
+
+    <div class="bento-grid">
+      <div class="bento-item about-card" data-col="6" data-row="2">
+        <h2>About Me</h2>
+        <p>I'm Humaira Ambreen, a passionate software developer and designer dedicated to crafting meaningful digital
+          experiences. With expertise in design, development, and strategic thinking, I transform ideas into
+          impactful solutions.</p>
+        <div class="about-buttons">
+          <a href="#" class="about-button primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Resume
+          </a>
+          <a href="#" class="about-button">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Box Bot Card: 3 columns, 2 rows -->
+      <div class="bento-item boxbot-card" data-col="3" data-row="2">
+        <canvas id="boxbot-canvas"></canvas>
+      </div>
+
+      <!-- Profile Picture: 3 columns, 2 rows -->
+      <div class="bento-item profile-picture-card" data-col="3" data-row="2">
+        <img class="profile-img"
+          src="https://media.licdn.com/dms/image/v2/D4D03AQE3nYVlRFGMvg/profile-displayphoto-shrink_200_200/B4DZUZ0Qt5HwAo-/0/1739894885955?e=2147483647&v=beta&t=EJfXpCi6RVB0YEY0aJSydcK8lhnb54gYz5XqAfaW-KM"
+          alt="Humaira Ambreen">
+      </div>
+
+      <!-- Lost and Found Project -->
+      <div class="bento-item lostandfound-card" data-col="4" data-row="2">
+        <div class="bento-image">
+          <img src="/assets/l&f.png" alt="Brand Design" class="default-img">
+          <img src="/assets/covers/l&f.gif" alt="Brand Identity" class="hover-img">
+        </div>
+        <a class="bento-link" href="#work-lostandfound" aria-label="Go to Lost & Found details"></a>
+      </div>
+
+      <!-- GitHub Stats Card: 4 columns, 2 rows -->
+      <div class="bento-item github-stats-card" data-col="3" data-row="1">
+        <img
+          src="https://github-readme-stats.vercel.app/api?username=humairaambreen&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e6e1d7&text_color=e6e1d7&icon_color=c8b4a0"
+          alt="Profile Stats">
+      </div>
+
+      <!-- Luveian Project -->
+      <div class="bento-item luveian-card" data-col="5" data-row="3">
+        <div class="bento-image">
+          <img src="https://aryansrao.github.io/assets/luveianlogo.jpg" alt="Web Development" class="default-img">
+          <img src="/assets/covers/luveian.gif" alt="Coding" class="hover-img">
+        </div>
+        <a class="bento-link" href="#work-luveian" aria-label="Go to Luveian details"></a>
+      </div>
+
+      <!-- kec project -->
+      <div class="bento-item kec-card" data-col="3" data-row="2">
+        <div class="bento-image">
+          <div class="circle-inner" aria-hidden="true">
+            <img src="/assets/kec.png" alt="KEC project" class="default-img">
+            <img src="/assets/covers/kec.gif" alt="Animation" class="hover-img">
+          </div>
+        </div>
+        <a class="bento-link" href="#work-kec" aria-label="Go to KEC details"></a>
+      </div>
+
+      <!-- Most Used Languages: 3 columns, 2 rows -->
+      <div class="bento-item github-activity-card" data-col="4" data-row="1">
+        <img
+          src="https://github-readme-stats.vercel.app/api/top-langs/?username=humairaambreen&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e6e1d7&text_color=e6e1d7"
+          alt="Most Used Languages">
+      </div>
+
+      <!-- Frost Nova Game: 3 columns, 2 rows -->
+      <div class="bento-item frost-nova-card" data-col="4" data-row="2">
+        <iframe 
+          src="./frostnova.html" 
+          style="width: 100%; height: 100%; border: none; display: block;"
+          title="Frost Nova Game">
+        </iframe>
+      </div>
+
+      <!-- Skill Card: shows techs with 5-star preview ratings -->
+      <div class="bento-item skill-card" data-col="5" data-row="2">
+        <h3 style="margin:1rem 1rem 0; font-size:1.15rem; font-weight:700; color:var(--color-accent);">Skills</h3>
+        <div class="skills-list" style="padding:0 1rem 1rem;">
+          <div class="skill-row">
+            <div class="skill-name">UI and UX</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="5" aria-hidden="true"></div>
+              <div class="skill-level">5.0</div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name">Java</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="4" aria-hidden="true"></div>
+              <div class="skill-level">4.0</div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name">MERN</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="4.5" aria-hidden="true"></div>
+              <div class="skill-level">4.5</div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name">React</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="4.5" aria-hidden="true"></div>
+              <div class="skill-level">4.5</div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name">Node.js</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="4" aria-hidden="true"></div>
+              <div class="skill-level">4.0</div>
+            </div>
+          </div>
+
+          <div class="skill-row">
+            <div class="skill-name">SQL</div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skill-stars" data-rating="3.5" aria-hidden="true"></div>
+              <div class="skill-level">3.5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- More Projects Soon Card -->
+      <div class="bento-item more-projects-card" data-col="3" data-row="2">
+        <div class="more-projects-content">
+          <h3 class="more-projects-title">
+            <span class="more-projects-main">More<br>projects</span>
+            <span class="more-projects-soon">soon</span>
+          </h3>
+        </div>
+      </div>
+      <!-- Hire Me / View Services Card -->
+      <div class="bento-item hire-card" data-col="3" data-row="2">
+        <a href="#services" class="bento-link hire-link" aria-label="View Services"></a>
+        <div class="hire-content">
+          <div class="hire-text">
+            <h3 class="hire-title">Hire Me</h3>
+            <p class="hire-subtitle">View Services</p>
+          </div>
+          <div class="hire-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Contact Card: 6 columns, 3 rows -->
+  <div id="contact" class="bento-item contact-card" data-col="6" data-row="2">
+        <h2>Let's Connect</h2>
+        <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just
+          want to say hello, feel free to reach out!</p>
+
+        <div class="contact-actions">
+          <a href="#" class="contact-action" aria-label="Schedule a meeting">
+            <!-- calendar icon -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            <span>Schedule</span>
+          </a>
+
+          <a href="mailto:hussainhuma2004@gmail.com" class="contact-action" aria-label="Send email">
+            <!-- envelope icon -->
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 8l9 6 9-6" />
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+            </svg>
+            <span>Email</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- H card -->
+      <div class="bento-item h-image-card" data-col="3" data-row="2">
+        <div class="bento-image">
+          <img src="/assets/h.jpeg" alt="User Research" class="default-img">
+          <img src="/assets/covers/h.gif" alt="Team Collaboration" class="hover-img">
+        </div>
+      </div>
+
+      <!-- Based in India card (simplified: static text, no JS) -->
+      <div class="bento-item location-card" data-col="4" data-row="2" aria-label="Location and time">
+        <div class="location-slideshow" aria-hidden="true">
+          <img src="https://cdn.cosmos.so/66812840-2ca4-4c3d-935e-01cb27ffc121?format=jpeg" alt="Location 1"
+            class="active">
+          <img src="https://cdn.cosmos.so/9d9a035b-4905-4917-af0c-00aca841456f?format=jpeg" alt="Location 2">
+          <img src="https://cdn.cosmos.so/4055ca5b-f867-406e-a3ca-00faa0691059?format=jpeg" alt="Location 3">
+        </div>
+        <svg class="loc-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke-width="1.6"
+            stroke-linecap="round" stroke-linejoin="round"></path>
+          <circle cx="12" cy="9" r="2.4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle>
+        </svg>
+        <h3>Based in <span class="location-highlight">India</span></h3>
+        <div class="time">IST 11:58 PM</div>
+        <p class="subtitle">Available for remote work worldwide</p>
+      </div>
+      <!-- Project 7: Quote Card -->
+      <div class="bento-item quote-card" data-col="5" data-row="2" aria-label="Quote card">
+        <figure>
+          <blockquote class="quote">“Stay hungry, stay foolish.”</blockquote>
+          <figcaption class="author">— Steve Jobs</figcaption>
+        </figure>
+      </div>
+      <!-- Compact 2x2 square made from the last four thumbnails -->
+      <div class="bento-item social-links-card" data-col="3" data-row="2">
+        <div class="square">
+          <div class="small-grid">
+            <a class="mini" href="mailto:hussainhuma2004@gmail.com" target="_blank" rel="noopener noreferrer"
+              aria-label="Email Huma">
+              <!-- Email (envelope) SVG -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </a>
+
+            <a class="mini" href="https://www.linkedin.com/in/humairaambreen" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn">
+              <!-- LinkedIn SVG -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v14H0V8zm7 0h4.8v2h.1c.7-1.3 2.4-2.6 4.9-2.6C22 7.4 24 9.7 24 14.2V22h-5v-6.4c0-1.5 0-3.4-2.1-3.4-2.1 0-2.5 1.7-2.5 3.3V22H7V8z" />
+              </svg>
+            </a>
+
+            <a class="mini" href="https://github.com/humairaambreen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <!-- GitHub SVG -->
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path
+                  d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.16 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.64.23 2.86.11 3.16.75.81 1.2 1.84 1.2 3.1 0 4.44-2.7 5.41-5.28 5.7.42.36.8 1.08.8 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
+              </svg>
+            </a>
+
+            <a class="mini" href="./support/" aria-label="Support (donate)" title="Support">
+              <!-- Indian Rupee as text for reliability across platforms -->
+              <span class="rupee" aria-hidden="true">₹</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 01WORK section -->
+    <section class="work-section" aria-label="01 Work">
+      <div class="work-header">
+        <div class="work-index">01</div>
+        <h1 class="work-title">WORK</h1>
+      </div>
+      <div class="work-step" id="work-luveian">
+        <div class="step-label">INTERNSHIP</div>
+        <div class="step-content">
+          <h2>
+            <a href="https://luveian.com" target="_blank" rel="noopener noreferrer" class="hover-text-effect">
+              <div class="text-wrap">Luveian</div>
+              <div class="text-wrap">Luveian</div>
+            </a>
+          </h2>
+          <div class="step-meta"><span class="step-date" data-start="2024-10-01">October 2024 — Present · <span class="months-count">0 months</span></span></div>
+          <p>Contributed as a full-stack intern building features for Luveian's web platform. Worked across the stack
+            (frontend components, backend endpoints and integration) to ship performance-minded UI and improve developer
+            workflows. Helped implement responsive UI patterns and optimize page load for better conversion on marketing
+            landing pages.</p>
+          <div class="work-links">
+            <a href="https://luveian.com" target="_blank" rel="noopener noreferrer" class="work-link-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+              View Live
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-step" id="work-lostandfound">
+        <div class="step-label">PROJECT</div>
+        <div class="step-content">
+          <h2>
+            <a href="https://lostandfound-0brr.onrender.com/" target="_blank" rel="noopener noreferrer" class="hover-text-effect">
+              <div class="text-wrap">Lost & Found</div>
+              <div class="text-wrap">Lost & Found</div>
+            </a>
+          </h2>
+          <div class="step-meta"><span class="step-date">July 2025</span></div>
+          <p>A progressive web app designed for college campuses to report and locate lost items. Uses Firebase Realtime
+            Database for fast sync and stores uploaded images as base64 strings for simple image persistence. The app
+            doubles as a small social platform for students to post updates and coordinate returns.</p>
+          <div class="work-links">
+            <a href="https://lostandfound-0brr.onrender.com/" target="_blank" rel="noopener noreferrer" class="work-link-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+              View Live
+            </a>
+            <a href="https://github.com/humairaambreen/lostandfound" target="_blank" rel="noopener noreferrer" class="work-link-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.16 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.64.23 2.86.11 3.16.75.81 1.2 1.84 1.2 3.1 0 4.44-2.7 5.41-5.28 5.7.42.36.8 1.08.8 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+              </svg>
+              View GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-step" id="work-kec">
+        <div class="step-label">PROJECT</div>
+        <div class="step-content">
+          <h2>
+            <a href="https://kec-live.netlify.app/" target="_blank" rel="noopener noreferrer" class="hover-text-effect">
+              <div class="text-wrap">KEC</div>
+              <div class="text-wrap">KEC</div>
+            </a>
+          </h2>
+          <div class="step-meta"><span class="step-date">December 2024</span></div>
+          <p>A minimal college site for Krishna Engineering College providing notes, previous year questions, syllabus
+            links to the official university resources, faculty profiles and an ID-card generator that renders HTML to
+            an image for easy downloads. Built for speed and simplicity with a focus on accessibility.</p>
+          <div class="work-links">
+            <a href="https://kec-live.netlify.app/" target="_blank" rel="noopener noreferrer" class="work-link-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+              </svg>
+              View Live
+            </a>
+            <a href="https://github.com/humairaambreen/kec" target="_blank" rel="noopener noreferrer" class="work-link-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.35-1.3-1.71-1.3-1.71-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.71 0-1.26.45-2.29 1.2-3.1-.12-.3-.52-1.52.11-3.16 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.82 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.64.23 2.86.11 3.16.75.81 1.2 1.84 1.2 3.1 0 4.44-2.7 5.41-5.28 5.7.42.36.8 1.08.8 2.18 0 1.57-.01 2.84-.01 3.23 0 .31.2.68.8.56A11.52 11.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+              </svg>
+              View GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 02 SERVICES section - Horizontal scroll -->
+    <section class="services-section" aria-label="02 Services">
+      <div class="work-header">
+        <div class="work-index">02</div>
+        <h1 class="work-title">SERVICES</h1>
+      </div>
+      
+      <div class="services-container">
+        <!-- Mobile navigation buttons -->
+        <button class="service-nav-btn service-nav-left" aria-label="Previous service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="service-nav-btn service-nav-right" aria-label="Next service">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        
+        <div class="services-sticky-wrapper">
+          <div class="services-scroll-content">
+            <div class="service-card">
+              <div class="service-number">01 — Design</div>
+              <h3>UI/UX Design</h3>
+              <p>Creating intuitive and visually compelling user interfaces that prioritize user experience and conversion.</p>
+              <ul class="service-features">
+                <li>User Research & Analysis</li>
+                <li>Wireframing & Prototyping</li>
+                <li>Visual Design & Branding</li>
+                <li>Responsive Design Systems</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-number">02 — Development</div>
+              <h3>Web Development</h3>
+              <p>Building responsive, performance-optimized websites and web applications using modern technologies.</p>
+              <ul class="service-features">
+                <li>React & Next.js Development</li>
+                <li>Full-Stack Solutions</li>
+                <li>API Integration</li>
+                <li>Performance Optimization</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-number">03 — Strategy</div>
+              <h3>Technical Consulting</h3>
+              <p>Providing strategic guidance on technology stack selection, architecture decisions, and development best practices.</p>
+              <ul class="service-features">
+                <li>Technology Stack Planning</li>
+                <li>Code Review & Optimization</li>
+                <li>Team Training & Mentoring</li>
+                <li>Project Architecture</li>
+              </ul>
+            </div>
+
+            <div class="service-card">
+              <div class="service-number">04 — Support</div>
+              <h3>Maintenance & Support</h3>
+              <p>Ongoing support and maintenance to keep your digital products running smoothly and up-to-date.</p>
+              <ul class="service-features">
+                <li>Bug Fixes & Updates</li>
+                <li>Performance Monitoring</li>
+                <li>Security Patches</li>
+                <li>Feature Enhancements</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <h2 class="footer-name">HUMAIRA <br> AMBREEN</h2>
+      
+      <div class="footer-actions">
+        <!-- Navigation buttons -->
+        <div class="footer-nav">
+          <button class="footer-btn" id="scrollToTop">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 19V5M5 12l7-7 7 7"/>
+            </svg>
+            Top
+          </button>
+          
+          <a href="#work" class="footer-btn">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <path d="M9 22V12h6v10"/>
+            </svg>
+            Work
+          </a>
+          
+          <a href="#services" class="footer-btn">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6M5.6 5.6l4.2 4.2m4.2 4.2l4.2 4.2M1 12h6m6 0h6M5.6 18.4l4.2-4.2m4.2-4.2l4.2-4.2"/>
+            </svg>
+            Services
+          </a>
+        </div>
+        
+        <!-- Social icons -->
+        <div class="footer-social">
+          <a href="https://github.com/humairaambreen" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </a>
+          
+          <a href="mailto:hussainhuma2004@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <path d="M22 6l-10 7L2 6"/>
+            </svg>
+          </a>
+          
+          <a href="https://linkedin.com/in/humairaambreen" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          
+          <a href="https://calendly.com/humairaambreen" target="_blank" rel="noopener noreferrer" aria-label="Schedule Meeting">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+          </a>
+        </div>
+        
+        <!-- Support button -->
+        <div class="footer-support">
+          <a href="./support/" class="footer-btn support-btn">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+            Support ₹
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js'></script>
+  <script src='https://unpkg.com/split-type'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'></script>
+  <script>
+    // Menu Overlay Animation
+    (function() {
+      const menuOverlay = document.querySelector(".menu-overlay");
+      const portfolioContainer = document.querySelector(".portfolio-container");
+      const toggleButton = document.querySelector(".menu-toggle");
+      
+      if (!menuOverlay || !portfolioContainer || !toggleButton) return;
+
+      let menuTimeline = gsap.timeline({ paused: true });
+
+      // === OPEN ANIMATION ===
+      menuTimeline
+        // Animate menu overlay clip-path open
+        .to(
+          menuOverlay,
+          {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 120%, 0% 100%)",
+            duration: 0.8,
+            ease: "power3.inOut",
+            onStart: () => {
+              menuOverlay.style.pointerEvents = "none";
+            },
+            onComplete: () => {
+              menuOverlay.style.clipPath = "none";
+              menuOverlay.style.pointerEvents = "auto";
+            }
+          },
+          0
+        )
+
+        // Animate portfolio content
+        .to(
+          portfolioContainer,
+          {
+            yPercent: 20,
+            rotation: 18,
+            scale: 1.3,
+            transformOrigin: "left top",
+            duration: 0.8,
+            ease: "power3.inOut"
+          },
+          0
+        )
+
+        // Animate menu links in
+        .add(() => {
+          const linkTexts = document.querySelectorAll("[data-text-anim]");
+
+          linkTexts.forEach((el) => {
+            gsap.set(el, { visibility: "visible" });
+
+            const split = new SplitType(el, {
+              types: "chars",
+              tagName: "span"
+            });
+
+            menuTimeline.fromTo(
+              split.chars,
+              { yPercent: -200 },
+              { yPercent: 0, ease: "power2.inOut", duration: 0.5, stagger: 0.01 },
+              0.2
+            );
+          });
+        }, 0)
+
+        // Animate toggle button
+        .to(
+          ".toggle-line-top",
+          {
+            transformOrigin: "center",
+            y: 4,
+            scaleX: 0.8,
+            rotation: 45,
+            duration: 0.4,
+            ease: "back.out(1.5)"
+          },
+          0.2
+        )
+        .to(
+          ".toggle-line-bottom",
+          {
+            transformOrigin: "center",
+            y: -4,
+            scaleX: 0.8,
+            rotation: -45,
+            duration: 0.4,
+            ease: "back.out(1.5)"
+          },
+          0.2
+        );
+
+      // === TOGGLE MENU ===
+      toggleButton.addEventListener("click", () => {
+        if (menuTimeline.progress() === 1) {
+          // Menu is open, close it
+          menuTimeline.reverse();
+          menuTimeline.eventCallback("onReverseComplete", () => {
+            menuOverlay.style.pointerEvents = "none";
+          });
+        } else {
+          // Menu is closed, open it
+          menuTimeline.play();
+        }
+      });
+
+      // Close menu when clicking on a link and optionally scroll to a section
+      const menuLinks = document.querySelectorAll(".menu-overlay__main a");
+      menuLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          // allow normal navigation for external links
+          const href = link.getAttribute('href') || '';
+
+          if (menuTimeline.progress() === 1) {
+            menuTimeline.reverse();
+            // after menu has closed, scroll if internal anchor
+            menuTimeline.eventCallback("onReverseComplete", () => {
+              menuOverlay.style.pointerEvents = "none";
+              if (href.startsWith('#')) {
+                // Prefer smooth scroller if available
+                setTimeout(() => {
+                  const scrollFn = window.SmoothScroll && window.SmoothScroll.scrollToElement ? window.SmoothScroll.scrollToElement : null;
+                  if (scrollFn) {
+                    try { scrollFn(href, true, 24); } catch (err) { /* ignore */ }
+                  } else {
+                    const el = document.querySelector(href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }, 80);
+              }
+            });
+          }
+        });
+      });
+    })();
+
+    // Compute months between a start date and now and update any .months-count inside elements
+    (function () {
+      function monthDiff(start, end) {
+        var years = end.getFullYear() - start.getFullYear();
+        var months = end.getMonth() - start.getMonth();
+        var total = years * 12 + months;
+        // subtract one if the current day-of-month is before the start day-of-month
+        if (end.getDate() < start.getDate()) total -= 1;
+        return Math.max(0, total);
+      }
+
+      function formatStartLabel(date) {
+        return date.toLocaleString(undefined, { month: 'long' }) + ' ' + date.getFullYear();
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var nodes = document.querySelectorAll('.step-date[data-start]');
+        nodes.forEach(function (el) {
+          var startStr = el.getAttribute('data-start');
+          if (!startStr) return;
+          var start = new Date(startStr);
+          if (isNaN(start)) return;
+          var now = new Date();
+          var months = monthDiff(start, now);
+          var monthLabel = months === 1 ? '1 month' : months + ' months';
+          // Prefer full month name like "October 2024 — Present · 13 months"
+          var startLabel = formatStartLabel(start);
+          el.innerHTML = startLabel + ' — Present · <span class="months-count">' + monthLabel + '</span>';
+        });
+      });
+    })();
+  </script>
+  <script>
+    // Smooth-scroll from bento cards to work entries and briefly highlight the target
+    (function () {
+      function flashAndFocus(target) {
+        if (!target) return;
+        target.classList.remove('flash');
+        // Force reflow so re-adding class restarts the animation
+        // eslint-disable-next-line no-unused-expressions
+        void target.offsetWidth;
+        target.classList.add('flash');
+        // Remove highlight after 2s
+        window.setTimeout(function () { target.classList.remove('flash'); }, 2000);
+      }
+
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('.bento-link');
+        if (!a) return;
+        
+        var href = a.getAttribute('href');
+        if (!href) return;
+        
+        // Handle services link
+        if (href === '#services') {
+          e.preventDefault();
+          if (window.SmoothScroll && window.SmoothScroll.scrollToElement) {
+            window.SmoothScroll.scrollToElement('.services-section', false, 0);
+          }
+          return;
+        }
+        
+        // Only handle internal anchors that target work entries
+        if (href.indexOf('#work-') !== 0) return;
+        e.preventDefault();
+        var targetId = href.substring(1); // remove '#'
+        var target = document.getElementById(targetId);
+        if (!target) return;
+        
+        // Check if the custom smooth scroll wrapper is available
+        if (window.SmoothScroll && window.SmoothScroll.scrollTo) {
+          // Wait for smooth scroll wrapper to initialize
+          window.setTimeout(function() {
+            var scroller = document.querySelector('.smooth-scroll-scroller');
+            if (!scroller) {
+              // Fallback to native if wrapper isn't ready
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              // Use custom smooth scroll
+              var offset = 100; // breathing room at top
+              var y = target.offsetTop - offset;
+              var maxScroll = Math.max(0, scroller.scrollHeight - window.innerHeight);
+              y = Math.max(0, Math.min(y, maxScroll));
+              window.SmoothScroll.scrollTo(y);
+            }
+            // Update URL hash
+            try { history.replaceState(null, '', href); } catch (err) { /* ignore */ }
+            // Flash the target after scroll starts
+            window.setTimeout(function () { flashAndFocus(target); }, 420);
+          }, 50);
+        } else {
+          // Fallback to native smooth scroll
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          try { history.replaceState(null, '', href); } catch (err) { /* ignore */ }
+          window.setTimeout(function () { flashAndFocus(target); }, 420);
+        }
+      });
+    })();
+  </script>
+  <script>
+    // Change background color when entering work section
+    (function() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const workSection = document.querySelector('.work-section');
+          const scroller = document.querySelector('.smooth-scroll-scroller');
+          
+          if (!workSection) return;
+          
+          function checkWorkSection() {
+            const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+            const workTop = workSection.offsetTop;
+            const workBottom = workTop + workSection.offsetHeight;
+            const viewportMiddle = currentY + window.innerHeight / 2;
+            
+            // Toggle class when viewport middle is inside work section
+            if (viewportMiddle >= workTop && viewportMiddle <= workBottom) {
+              document.body.classList.add('work-section-active');
+            } else {
+              document.body.classList.remove('work-section-active');
+            }
+          }
+          
+          // Listen to scroll events
+          const container = document.querySelector('.smooth-scroll-container');
+          if (container) {
+            container.addEventListener('wheel', checkWorkSection);
+            container.addEventListener('touchmove', checkWorkSection);
+          } else {
+            window.addEventListener('scroll', checkWorkSection);
+          }
+          
+          // Also check continuously during smooth scrolling (for programmatic scrolls like card clicks)
+          setInterval(checkWorkSection, 100);
+          
+          // Check on load in case already scrolled
+          checkWorkSection();
+        }, 500);
+      });
+    })();
+  </script>
+  <script>
+    // GSAP animation for "01 WORK" section heading - similar to loading screen
+    (function() {
+      // Wait for everything to be ready including custom smooth scroll
+      window.addEventListener('load', function() {
+        // Give smooth scroll time to initialize
+        setTimeout(function() {
+          if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') return;
+          
+          // Get the work header elements
+          const workIndex = document.querySelector('.work-index');
+          const workTitle = document.querySelector('.work-title');
+          const scroller = document.querySelector('.smooth-scroll-scroller');
+          
+          if (workIndex && workTitle && scroller) {
+            // Split text into characters like the loading screen
+            const indexSplit = new SplitType(workIndex, { types: "chars" });
+            const titleSplit = new SplitType(workTitle, { types: "chars" });
+            
+            // Set initial state - hidden and below (like loading screen)
+            gsap.set(indexSplit.chars, { opacity: 0, y: 100 });
+            gsap.set(titleSplit.chars, { opacity: 0, y: 100 });
+            
+            // Monitor the custom smooth scroll position
+            let hasAnimated = false;
+            
+            function checkScroll() {
+              if (hasAnimated) return;
+              
+              const workSection = document.querySelector('.work-section');
+              if (!workSection) return;
+              
+              const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+              const triggerPoint = workSection.offsetTop - window.innerHeight * 0.8;
+              
+              if (currentY >= triggerPoint) {
+                hasAnimated = true;
+                
+                // Animate characters staggered - exactly like loading screen
+                gsap.to(indexSplit.chars, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  stagger: 0.05,
+                  ease: "power2.out"
+                });
+                
+                // Animate title characters with slight delay
+                gsap.to(titleSplit.chars, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  stagger: 0.05,
+                  ease: "power2.out",
+                  delay: 0.2
+                });
+              }
+            }
+            
+            // Check on wheel events
+            const container = document.querySelector('.smooth-scroll-container');
+            if (container) {
+              container.addEventListener('wheel', checkScroll);
+              container.addEventListener('touchmove', checkScroll);
+            }
+            
+            // Also check periodically in case of programmatic scroll
+            const interval = setInterval(checkScroll, 100);
+            
+            // Clean up after animation
+            setTimeout(function() {
+              if (hasAnimated) clearInterval(interval);
+            }, 10000);
+          }
+        }, 500);
+      });
+    })();
+  </script>
+  <script>
+    // Horizontal scroll for services section - LOCK page and scroll horizontally
+    (function() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Skip on mobile
+          if (window.innerWidth <= 480) return;
+
+          const servicesSection = document.querySelector('.services-section');
+          const stickyWrapper = document.querySelector('.services-sticky-wrapper');
+          const scrollContent = document.querySelector('.services-scroll-content');
+          const smoothScrollContainer = document.querySelector('.smooth-scroll-container');
+          
+          if (!servicesSection || !stickyWrapper || !scrollContent) return;
+          
+          let isLocked = false;
+          let currentScrollX = 0;
+          let lockedScrollY = 0;
+          
+          function checkPosition() {
+            const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+            const sectionTop = servicesSection.offsetTop;
+            const sectionBottom = sectionTop + servicesSection.offsetHeight;
+            
+            // Lock when we're near the TOP of the section (within 100px)
+            const shouldLock = currentY >= sectionTop - 100 && currentY <= sectionTop + 100;
+            
+            if (shouldLock && !isLocked) {
+              // Entering the section at the top - lock scroll
+              isLocked = true;
+              lockedScrollY = sectionTop;
+              
+              // Scroll to exact top of section first
+              if (window.SmoothScroll) {
+                window.SmoothScroll.scrollTo(sectionTop);
+              }
+              
+              // Disable smooth scroll wrapper
+              if (smoothScrollContainer) {
+                smoothScrollContainer.style.pointerEvents = 'none';
+              }
+            } else if (!shouldLock && isLocked && currentScrollX <= -getMaxScroll() + 10) {
+              // Only unlock if we've scrolled through the cards
+              isLocked = false;
+              
+              // Re-enable smooth scroll wrapper
+              if (smoothScrollContainer) {
+                smoothScrollContainer.style.pointerEvents = '';
+              }
+            }
+          }
+          
+          function getMaxScroll() {
+            const contentWidth = scrollContent.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            // Add extra 200px to ensure the last card is fully visible
+            return contentWidth - viewportWidth + 200;
+          }
+          
+          function handleWheel(e) {
+            if (!isLocked) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            
+            // Keep the page locked at the same position
+            if (window.SmoothScroll) {
+              window.SmoothScroll.scrollTo(lockedScrollY);
+            }
+            
+            const maxScrollX = getMaxScroll();
+            
+            // Update horizontal scroll position
+            currentScrollX -= e.deltaY * 0.8; // Smooth factor
+            currentScrollX = Math.max(-maxScrollX, Math.min(0, currentScrollX));
+            
+            // Apply transform
+            scrollContent.style.transform = `translateX(${currentScrollX}px)`;
+            
+            // Show/hide left fade based on scroll position
+            if (currentScrollX < -50) {
+              stickyWrapper.classList.add('scrolled');
+            } else {
+              stickyWrapper.classList.remove('scrolled');
+            }
+            
+            // Check if we've reached the end and should unlock
+            // Use a larger threshold to ensure the 4th card is fully visible
+            if (currentScrollX <= -maxScrollX + 1 && e.deltaY > 0) {
+              // At the end, scrolling down - unlock and continue
+              isLocked = false;
+              
+              if (smoothScrollContainer) {
+                smoothScrollContainer.style.pointerEvents = '';
+              }
+              
+              // Scroll past the section
+              if (window.SmoothScroll) {
+                const sectionBottom = servicesSection.offsetTop + servicesSection.offsetHeight;
+                window.SmoothScroll.scrollTo(sectionBottom + 100);
+              }
+            } else if (currentScrollX >= 0 && e.deltaY < 0) {
+              // At the start, scrolling up - unlock ONLY if already at position 0
+              isLocked = false;
+              currentScrollX = 0;
+              scrollContent.style.transform = `translateX(0px)`;
+              
+              if (smoothScrollContainer) {
+                smoothScrollContainer.style.pointerEvents = '';
+              }
+              
+              // Scroll before the section
+              if (window.SmoothScroll) {
+                const sectionTop = servicesSection.offsetTop;
+                window.SmoothScroll.scrollTo(sectionTop - 100);
+              }
+            }
+            
+            return false;
+          }
+          
+          // Check position frequently
+          setInterval(checkPosition, 50);
+          
+          // Intercept wheel events at capture phase
+          window.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+          
+          // Initial check
+          setTimeout(checkPosition, 100);
+        }, 1000);
+      });
+    })();
+  </script>
+  <script>
+    // Scroll to top button
+    (function() {
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      
+      if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener('click', function() {
+          if (window.SmoothScroll) {
+            window.SmoothScroll.scrollTo(0);
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      }
+      
+      // Update work section link
+      const workLink = document.querySelector('a[href="#work"]');
+      if (workLink) {
+        workLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (window.SmoothScroll && window.SmoothScroll.scrollToElement) {
+            window.SmoothScroll.scrollToElement('.work-section', false, 0);
+          }
+        });
+      }
+      
+      // Update services section link
+      const servicesLink = document.querySelector('a[href="#services"]');
+      if (servicesLink) {
+        servicesLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (window.SmoothScroll && window.SmoothScroll.scrollToElement) {
+            window.SmoothScroll.scrollToElement('.services-section', false, 0);
+          }
+        });
+      }
+    })();
+  </script>
+  <script>
+    // GSAP animation for "02 SERVICES" section heading
+    (function() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') return;
+          
+          const servicesSection = document.querySelector('.services-section');
+          if (!servicesSection) return;
+          
+          const servicesIndex = servicesSection.querySelector('.work-index');
+          const servicesTitle = servicesSection.querySelector('.work-title');
+          const scroller = document.querySelector('.smooth-scroll-scroller');
+          
+          if (servicesIndex && servicesTitle && scroller) {
+            // Split text into characters
+            const indexSplit = new SplitType(servicesIndex, { types: "chars" });
+            const titleSplit = new SplitType(servicesTitle, { types: "chars" });
+            
+            // Set initial state
+            gsap.set(indexSplit.chars, { opacity: 0, y: 100 });
+            gsap.set(titleSplit.chars, { opacity: 0, y: 100 });
+            
+            let hasAnimated = false;
+            
+            function checkScroll() {
+              if (hasAnimated) return;
+              
+              const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+              const triggerPoint = servicesSection.offsetTop - window.innerHeight * 0.8;
+              
+              if (currentY >= triggerPoint) {
+                hasAnimated = true;
+                
+                gsap.to(indexSplit.chars, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  stagger: 0.05,
+                  ease: "power2.out"
+                });
+                
+                gsap.to(titleSplit.chars, {
+                  opacity: 1,
+                  y: 0,
+                  duration: 0.5,
+                  stagger: 0.05,
+                  ease: "power2.out",
+                  delay: 0.2
+                });
+              }
+            }
+            
+            const container = document.querySelector('.smooth-scroll-container');
+            if (container) {
+              container.addEventListener('wheel', checkScroll);
+              container.addEventListener('touchmove', checkScroll);
+            }
+            
+            const interval = setInterval(checkScroll, 100);
+            
+            setTimeout(function() {
+              if (hasAnimated) clearInterval(interval);
+            }, 10000);
+          }
+        }, 500);
+      });
+    })();
+  </script>
+  <script>
+    // GSAP animation for footer name
+    (function() {
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') return;
+          
+          const footerName = document.querySelector('.footer-name');
+          if (!footerName) return;
+          
+          // Split the text into characters
+          const split = new SplitType(footerName, { types: 'chars' });
+          
+          let hasAnimated = false;
+          
+          function checkScroll() {
+            if (hasAnimated) return;
+            
+            const footer = document.querySelector('footer');
+            if (!footer) return;
+            
+            const currentY = window.SmoothScroll ? window.SmoothScroll.getPosition() : window.scrollY;
+            const triggerPoint = footer.offsetTop - window.innerHeight * 0.8;
+            
+            if (currentY >= triggerPoint) {
+              hasAnimated = true;
+              
+              gsap.to(split.chars, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.03,
+                ease: "power3.out"
+              });
+            }
+          }
+          
+          const container = document.querySelector('.smooth-scroll-container');
+          if (container) {
+            container.addEventListener('wheel', checkScroll);
+            container.addEventListener('touchmove', checkScroll);
+          }
+          
+          const interval = setInterval(checkScroll, 100);
+          
+          setTimeout(function() {
+            if (hasAnimated) clearInterval(interval);
+          }, 15000);
+        }, 500);
+      });
+    })();
+  </script>
+  <script>
+    // Custom cursor for project bento cards only (Lost & Found, Luveian, KEC)
+    (function() {
+      const cursor = document.querySelector('.custom-cursor');
+      // Only target bento items that have a .bento-link inside them
+      const projectCards = document.querySelectorAll('.bento-item:has(.bento-link)');
+      
+      if (!cursor) return;
+      
+      projectCards.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          cursor.classList.add('active');
+        });
+        
+        item.addEventListener('mouseleave', function() {
+          cursor.classList.remove('active');
+        });
+        
+        item.addEventListener('mousemove', function(e) {
+          cursor.style.left = e.clientX + 'px';
+          cursor.style.top = e.clientY + 'px';
+        });
+      });
+    })();
+  </script>
+  <script>
+    // FIXED: Mouse glow effect for cards (desktop only)
+    // This fixes the "flash in center" bug when leaving the card
+
+    if (window.matchMedia('(hover: hover)').matches) {
+      const cards = document.querySelectorAll('.bento-item');
+
+      cards.forEach(card => {
+        // Track if mouse is currently over the card
+        let isHovering = false;
+
+        card.addEventListener('mouseenter', () => {
+          isHovering = true;
+        });
+
+        card.addEventListener('mousemove', (e) => {
+          if (!isHovering) return;
+
+          const rect = card.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+          card.style.setProperty('--mouse-x', `${x}%`);
+          card.style.setProperty('--mouse-y', `${y}%`);
+        });
+
+        card.addEventListener('mouseleave', () => {
+          isHovering = false;
+          // FIX: Don't reset the position, just let the opacity fade out
+          // This prevents the flash in the center
+          // The CSS transition on opacity will handle the smooth fade
+        });
+      });
+    }
+    // Apply grid sizes from HTML data attributes
+    document.querySelectorAll('[data-col]').forEach(item => {
+      const col = item.getAttribute('data-col');
+      const row = item.getAttribute('data-row');
+      item.style.gridColumn = `span ${col}`;
+      item.style.gridRow = `span ${row}`;
+    });
+
+    // Render skill stars based on data-rating attribute (0.5 increments allowed)
+    function renderStars(container, rating) {
+      container.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const span = document.createElement('span');
+        span.className = 'star';
+        if (rating >= i) {
+          span.classList.add('filled');
+          span.textContent = '★';
+        } else if (rating >= i - 0.5) {
+          span.classList.add('half');
+          span.textContent = '★';
+        } else {
+          span.textContent = '★';
+        }
+        container.appendChild(span);
+      }
+      container.setAttribute('aria-label', `Rating ${rating} out of 5`);
+    }
+
+    function renderSkillStars() {
+      const starContainerList = document.querySelectorAll('.skill-stars');
+      starContainerList.forEach(container => {
+        const rating = parseFloat(container.getAttribute('data-rating')) || 0;
+        renderStars(container, rating);
+      });
+    }
+
+    // run once after DOM is ready
+    renderSkillStars();
+
+    // Interactive hover-preview and click-to-rate
+    function initSkillInteractions() {
+      const starContainers = document.querySelectorAll('.skill-stars');
+      starContainers.forEach(container => {
+        let hoverRating = null;
+        const levelEl = container.parentElement.querySelector('.skill-level');
+
+        function getHoverRatingFromEvent(e) {
+          const rect = container.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const pct = Math.max(0, Math.min(1, x / rect.width));
+          // convert to 0.5 steps
+          return Math.round(pct * 10) / 2 || 0.5;
+        }
+
+        container.addEventListener('mousemove', (e) => {
+          hoverRating = getHoverRatingFromEvent(e);
+          renderStars(container, hoverRating);
+          if (levelEl) levelEl.textContent = hoverRating.toFixed(1);
+        });
+
+        container.addEventListener('mouseleave', () => {
+          const realRating = parseFloat(container.getAttribute('data-rating')) || 0;
+          renderStars(container, realRating);
+          if (levelEl) levelEl.textContent = realRating.toFixed(1);
+          hoverRating = null;
+        });
+
+        container.addEventListener('click', (e) => {
+          e.preventDefault();
+          const newRating = hoverRating || parseFloat(container.getAttribute('data-rating')) || 0;
+          const clamped = Math.max(0, Math.min(5, newRating));
+          container.setAttribute('data-rating', clamped);
+          renderStars(container, clamped);
+          if (levelEl) levelEl.textContent = clamped.toFixed(1);
+          // subtle pulse animation using GSAP if available
+          try {
+            if (window.gsap) {
+              gsap.fromTo(container, { scale: 1 }, { scale: 1.06, duration: 0.12, yoyo: true, repeat: 1, clearProps: 'scale' });
+            }
+          } catch (err) {
+            // ignore
+          }
+        });
+      });
+    }
+
+    // initialize interactions
+    initSkillInteractions();
+
+    // Box Bot Animation
+    const canvas = document.getElementById('boxbot-canvas');
+    if (canvas) {
+      let scene, camera, renderer, boxBot, leftPupil, rightPupil, leftEar, rightEar;
+      let mouseX = 0, mouseY = 0;
+      let isJumping = false;
+      let jumpProgress = 0;
+      let kids = [];
+      let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      let orientationPermissionGranted = false;
+      const maxKids = 3;
+      let spawnTimer = 0;
+
+      function init() {
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x3a3a3a);
+
+        // Front view camera - slightly from top
+        camera = new THREE.PerspectiveCamera(35, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+        camera.position.set(0, 4, 10);
+        camera.lookAt(0, 1, 0);
+
+        renderer = new THREE.WebGLRenderer({
+          canvas: canvas,
+          antialias: true
+        });
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+        // Better lighting setup
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, 1);
+        mainLight.position.set(10, 15, 10);
+        mainLight.castShadow = true;
+        mainLight.shadow.camera.left = -20;
+        mainLight.shadow.camera.right = 20;
+        mainLight.shadow.camera.top = 20;
+        mainLight.shadow.camera.bottom = -20;
+        mainLight.shadow.mapSize.width = 2048;
+        mainLight.shadow.mapSize.height = 2048;
+        scene.add(mainLight);
+
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        fillLight.position.set(-10, 10, -10);
+        scene.add(fillLight);
+
+        createBoxBot();
+        createFloor();
+
+        window.addEventListener('resize', onWindowResize);
+        document.addEventListener('mousemove', onMouseMove);
+        canvas.addEventListener('click', onMouseClick);
+      }
+
+      function createBoxBot() {
+        boxBot = new THREE.Group();
+
+        // Main body - dark but visible box
+        const bodyGeometry = new THREE.BoxGeometry(2, 2, 2);
+        const bodyMaterial = new THREE.MeshStandardMaterial({
+          color: 0x2a2a2a,
+          roughness: 0.4,
+          metalness: 0.6
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        body.castShadow = true;
+        body.receiveShadow = true;
+        boxBot.add(body);
+
+        // Small cute ears
+        const earGeometry = new THREE.BoxGeometry(0.3, 0.6, 0.25);
+        const earMaterial = new THREE.MeshStandardMaterial({
+          color: 0x2a2a2a,
+          roughness: 0.4,
+          metalness: 0.6
+        });
+
+        leftEar = new THREE.Mesh(earGeometry, earMaterial);
+        leftEar.position.set(-0.7, 1.3, 0);
+        leftEar.castShadow = true;
+        boxBot.add(leftEar);
+
+        rightEar = new THREE.Mesh(earGeometry, earMaterial);
+        rightEar.position.set(0.7, 1.3, 0);
+        rightEar.castShadow = true;
+        boxBot.add(rightEar);
+
+        // Eye whites
+        const eyeGeometry = new THREE.SphereGeometry(0.4, 32, 32);
+        const eyeMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          roughness: 0.3,
+          metalness: 0.1
+        });
+
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-0.5, 0.15, 1.05);
+        leftEye.castShadow = true;
+        boxBot.add(leftEye);
+
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        rightEye.position.set(0.5, 0.15, 1.05);
+        rightEye.castShadow = true;
+        boxBot.add(rightEye);
+
+        // Pupils
+        const pupilGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+        const pupilMaterial = new THREE.MeshStandardMaterial({
+          color: 0x000000,
+          roughness: 0.2,
+          metalness: 0.8
+        });
+
+        leftPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        leftPupil.position.set(-0.5, 0.15, 1.35);
+        boxBot.add(leftPupil);
+
+        rightPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        rightPupil.position.set(0.5, 0.15, 1.35);
+        boxBot.add(rightPupil);
+
+        boxBot.position.y = 1;
+        boxBot.rotation.y = 0;
+        scene.add(boxBot);
+      }
+
+      function createFloor() {
+        // Shiny reflective floor - lighter color for better bot visibility
+        const floorGeometry = new THREE.PlaneGeometry(30, 30);
+        const floorMaterial = new THREE.MeshStandardMaterial({
+          color: 0xaaaaaa,     // Much lighter gray
+          roughness: 0.1,      // Very smooth for shininess
+          metalness: 0.8,      // High metalness for reflective look
+          envMapIntensity: 1.0 // Enhance environment reflections
+        });
+        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = 0;
+        floor.receiveShadow = true;
+        scene.add(floor);
+      }
+
+      function createKid() {
+        const kid = new THREE.Group();
+        
+        // Smaller body
+        const bodyGeometry = new THREE.BoxGeometry(1, 1, 1);
+        const bodyMaterial = new THREE.MeshStandardMaterial({
+          color: 0x3a3a3a,
+          roughness: 0.4,
+          metalness: 0.6
+        });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        body.castShadow = true;
+        body.receiveShadow = true;
+        kid.add(body);
+
+        // Tiny ears
+        const earGeometry = new THREE.BoxGeometry(0.15, 0.3, 0.12);
+        const earMaterial = new THREE.MeshStandardMaterial({
+          color: 0x3a3a3a,
+          roughness: 0.4,
+          metalness: 0.6
+        });
+
+        const leftEar = new THREE.Mesh(earGeometry, earMaterial);
+        leftEar.position.set(-0.35, 0.65, 0);
+        leftEar.castShadow = true;
+        kid.add(leftEar);
+
+        const rightEar = new THREE.Mesh(earGeometry, earMaterial);
+        rightEar.position.set(0.35, 0.65, 0);
+        rightEar.castShadow = true;
+        kid.add(rightEar);
+
+        // Smaller eyes
+        const eyeGeometry = new THREE.SphereGeometry(0.2, 32, 32);
+        const eyeMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffffff,
+          roughness: 0.3,
+          metalness: 0.1
+        });
+
+        const leftEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        leftEye.position.set(-0.25, 0.1, 0.52);
+        leftEye.castShadow = true;
+        kid.add(leftEye);
+
+        const rightEye = new THREE.Mesh(eyeGeometry, eyeMaterial);
+        rightEye.position.set(0.25, 0.1, 0.52);
+        rightEye.castShadow = true;
+        kid.add(rightEye);
+
+        // Pupils (bigger)
+        const pupilGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+        const pupilMaterial = new THREE.MeshStandardMaterial({
+          color: 0x000000,
+          roughness: 0.2,
+          metalness: 0.8
+        });
+
+        const leftPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        leftPupil.position.set(-0.25, 0.1, 0.62);
+        kid.add(leftPupil);
+
+        const rightPupil = new THREE.Mesh(pupilGeometry, pupilMaterial);
+        rightPupil.position.set(0.25, 0.1, 0.62);
+        kid.add(rightPupil);
+
+        // Spawn position around parent in visible area
+        const angle = Math.random() * Math.PI * 2;
+        const radius = 3 + Math.random() * 2; // Closer to parent
+        const startX = Math.cos(angle) * radius;
+        const startZ = Math.sin(angle) * radius;
+        
+        kid.position.set(startX, 0.5, startZ);
+        kid.rotation.y = Math.random() * Math.PI * 2;
+        
+        scene.add(kid);
+        
+        // Each kid orbits around the parent at different radius and speed
+        const orbitRadius = 3 + Math.random() * 3;
+        const orbitSpeed = 0.3 + Math.random() * 0.4;
+        const orbitDirection = Math.random() > 0.5 ? 1 : -1; // clockwise or counter-clockwise
+        
+        return {
+          mesh: kid,
+          leftEar: leftEar,
+          rightEar: rightEar,
+          jumpProgress: Math.random(),
+          jumpSpeed: 0.015 + Math.random() * 0.01,
+          walkSpeed: 0.04 + Math.random() * 0.02,
+          orbitAngle: angle,
+          orbitRadius: orbitRadius,
+          orbitSpeed: orbitSpeed * orbitDirection,
+          targetX: 0,
+          targetZ: 0,
+          lifetime: 0
+        };
+      }
+
+      function updateKids(time) {
+        // Spawn all kids at start
+        if (kids.length < maxKids && spawnTimer < maxKids * 30) {
+          spawnTimer++;
+          if (spawnTimer % 30 === 0) { // Spawn one every 30 frames
+            kids.push(createKid());
+          }
+        }
+
+        // Update existing kids
+        for (let i = 0; i < kids.length; i++) {
+          const kid = kids[i];
+          kid.lifetime++;
+
+          // Update orbit angle to move around parent
+          kid.orbitAngle += kid.orbitSpeed * 0.01;
+          
+          // Calculate target position on orbit path
+          kid.targetX = Math.cos(kid.orbitAngle) * kid.orbitRadius;
+          kid.targetZ = Math.sin(kid.orbitAngle) * kid.orbitRadius;
+
+          // Check collision with parent bot
+          const dxToParent = kid.mesh.position.x - boxBot.position.x;
+          const dzToParent = kid.mesh.position.z - boxBot.position.z;
+          const distanceToParent = Math.sqrt(dxToParent * dxToParent + dzToParent * dzToParent);
+          const minDistance = 2; // Safe distance from parent
+          
+          if (distanceToParent < minDistance) {
+            // Push kid away from parent
+            const pushAngle = Math.atan2(dzToParent, dxToParent);
+            kid.mesh.position.x = boxBot.position.x + Math.cos(pushAngle) * minDistance;
+            kid.mesh.position.z = boxBot.position.z + Math.sin(pushAngle) * minDistance;
+            
+            // Adjust orbit angle to match new position
+            kid.orbitAngle = pushAngle;
+          }
+
+          // Check collision with other kids
+          for (let j = 0; j < kids.length; j++) {
+            if (i !== j) {
+              const otherKid = kids[j];
+              const dx = kid.mesh.position.x - otherKid.mesh.position.x;
+              const dz = kid.mesh.position.z - otherKid.mesh.position.z;
+              const distance = Math.sqrt(dx * dx + dz * dz);
+              const minKidDistance = 1.2; // Minimum distance between kids
+              
+              if (distance < minKidDistance) {
+                // Push kids apart
+                const pushAngle = Math.atan2(dz, dx);
+                const overlap = minKidDistance - distance;
+                const pushAmount = overlap * 0.5;
+                
+                // Push current kid away
+                kid.mesh.position.x += Math.cos(pushAngle) * pushAmount;
+                kid.mesh.position.z += Math.sin(pushAngle) * pushAmount;
+                
+                // Push other kid away
+                otherKid.mesh.position.x -= Math.cos(pushAngle) * pushAmount;
+                otherKid.mesh.position.z -= Math.sin(pushAngle) * pushAmount;
+                
+                // Update orbit angles to match new positions
+                kid.orbitAngle = Math.atan2(kid.mesh.position.z, kid.mesh.position.x);
+                otherKid.orbitAngle = Math.atan2(otherKid.mesh.position.z, otherKid.mesh.position.x);
+              }
+            }
+          }
+
+          // Walking by jumping - slower, longer jumps
+          kid.jumpProgress += kid.jumpSpeed;
+          if (kid.jumpProgress > 1) {
+            kid.jumpProgress = 0;
+          }
+          
+          const jumpHeight = Math.sin(kid.jumpProgress * Math.PI) * 1.2;
+          kid.mesh.position.y = 0.5 + jumpHeight;
+
+          // Squash and stretch while jumping
+          const squash = 1 - Math.sin(kid.jumpProgress * Math.PI) * 0.25;
+          kid.mesh.scale.y = 1 + (1 - squash) * 0.6;
+          kid.mesh.scale.x = squash;
+          kid.mesh.scale.z = squash;
+
+          // Ear flapping
+          kid.leftEar.rotation.x = -Math.sin(kid.jumpProgress * Math.PI) * 0.5;
+          kid.rightEar.rotation.x = -Math.sin(kid.jumpProgress * Math.PI) * 0.5;
+          kid.leftEar.rotation.z = Math.sin(time * 2 + i) * 0.15;
+          kid.rightEar.rotation.z = -Math.sin(time * 2 + i) * 0.15;
+
+          // Move towards target position smoothly
+          const dx = kid.targetX - kid.mesh.position.x;
+          const dz = kid.targetZ - kid.mesh.position.z;
+          const distance = Math.sqrt(dx * dx + dz * dz);
+          
+          if (distance > 0.1 && jumpHeight < 0.3) { // Only move when close to ground
+            kid.mesh.position.x += (dx / distance) * kid.walkSpeed;
+            kid.mesh.position.z += (dz / distance) * kid.walkSpeed;
+            
+            // Face movement direction
+            const targetRotation = Math.atan2(dx, dz);
+            kid.mesh.rotation.y += (targetRotation - kid.mesh.rotation.y) * 0.1;
+          }
+        }
+      }
+
+      function onMouseMove(event) {
+        // Only use mouse tracking on desktop
+        if (!isMobile) {
+          const rect = canvas.getBoundingClientRect();
+          // Calculate mouse position relative to canvas center
+          // Values range from -1 to 1 for both x and y
+          mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+          
+          // Allow tracking even outside the canvas bounds
+          // Clamp values to reasonable range for smooth tracking
+          mouseX = Math.max(-2, Math.min(2, mouseX));
+          mouseY = Math.max(-2, Math.min(2, mouseY));
+        }
+      }
+
+      function onDeviceOrientation(event) {
+        // Use device orientation for mobile
+        if (isMobile && orientationPermissionGranted) {
+          // beta: front-to-back tilt (-180 to 180)
+          // gamma: left-to-right tilt (-90 to 90)
+          const beta = event.beta;  // Front-back tilt
+          const gamma = event.gamma; // Left-right tilt
+
+          // More sensitive normalization with wider range
+          // Increased sensitivity by reducing divisor (smaller angle = bigger effect)
+          // gamma: -30 to 30 degrees → -1 to 1 (more sensitive)
+          // beta: use smaller range for more sensitivity
+          const targetX = Math.max(-2, Math.min(2, gamma / 15)); // Increased from /45 to /15
+          const targetY = Math.max(-2, Math.min(2, (beta - 90) / 20)); // Increased from /45 to /20
+          
+          // Smooth interpolation for less jitter (reduced smoothing for faster response)
+          mouseX += (targetX - mouseX) * 0.3; // Increased from implicit 1.0 to 0.3 for balance
+          mouseY += (targetY - mouseY) * 0.3;
+        }
+      }
+
+      async function requestOrientationPermission() {
+        // For iOS 13+ devices, we need to request permission
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+          try {
+            const permission = await DeviceOrientationEvent.requestPermission();
+            if (permission === 'granted') {
+              orientationPermissionGranted = true;
+              window.addEventListener('deviceorientation', onDeviceOrientation);
+            }
+          } catch (error) {
+            console.log('Device orientation permission denied:', error);
+          }
+        } else if (window.DeviceOrientationEvent) {
+          // For Android and older iOS, no permission needed
+          orientationPermissionGranted = true;
+          window.addEventListener('deviceorientation', onDeviceOrientation);
+        }
+      }
+
+      function onMouseClick() {
+        if (!isJumping) {
+          isJumping = true;
+          jumpProgress = 0;
+        }
+
+        // On mobile, request orientation permission on first tap
+        if (isMobile && !orientationPermissionGranted) {
+          requestOrientationPermission();
+        }
+      }
+
+      function onWindowResize() {
+        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      }
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const time = Date.now() * 0.001;
+
+        // Update kids
+        updateKids(time);
+
+        // Small acute angle rotation - just slight head turns (reduced range)
+        const targetRotationY = mouseX * 0.25;  // Slightly increased for mobile sensitivity
+        const targetRotationX = mouseY * 0.20; // Slightly increased for mobile sensitivity
+
+        boxBot.rotation.y += (targetRotationY - boxBot.rotation.y) * 0.15; // Faster response
+        boxBot.rotation.x += (targetRotationX - boxBot.rotation.x) * 0.15; // Faster response
+
+        // Eye tracking - pupils do most of the work (increased range for mobile)
+        const pupilRangeX = 0.15;  // Increased for better mobile response
+        const pupilRangeY = 0.15;  // Increased for better mobile response
+
+        const leftTargetX = -0.5 + mouseX * pupilRangeX;
+        const leftTargetY = 0.15 + mouseY * pupilRangeY;
+        const leftTargetZ = 1.35;
+
+        leftPupil.position.x += (leftTargetX - leftPupil.position.x) * 0.25; // Faster pupil response
+        leftPupil.position.y += (leftTargetY - leftPupil.position.y) * 0.25;
+        leftPupil.position.z = leftTargetZ;
+
+        const rightTargetX = 0.5 + mouseX * pupilRangeX;
+        const rightTargetY = 0.15 + mouseY * pupilRangeY;
+        const rightTargetZ = 1.35;
+
+        rightPupil.position.x += (rightTargetX - rightPupil.position.x) * 0.25; // Faster pupil response
+        rightPupil.position.y += (rightTargetY - rightPupil.position.y) * 0.25;
+        rightPupil.position.z = rightTargetZ;
+
+        // Breathing and jump animation
+        let baseY = 1;
+
+        if (isJumping) {
+          jumpProgress += 0.04;  // Slower jump speed
+          const jumpHeight = Math.sin(jumpProgress * Math.PI) * 2.5;  // Higher jump
+          baseY = 1 + jumpHeight;
+
+          // Squash and stretch
+          const squash = 1 - Math.sin(jumpProgress * Math.PI) * 0.15;
+          boxBot.scale.y = 1 + (1 - squash) * 0.3;
+          boxBot.scale.x = squash;
+          boxBot.scale.z = squash;
+
+          // Ears flap during jump
+          leftEar.rotation.x = -Math.sin(jumpProgress * Math.PI * 2) * 0.5;
+          rightEar.rotation.x = -Math.sin(jumpProgress * Math.PI * 2) * 0.5;
+
+          if (jumpProgress >= 1) {
+            isJumping = false;
+            jumpProgress = 0;
+            boxBot.scale.set(1, 1, 1);
+          }
+        } else {
+          // Subtle breathing when not jumping
+          baseY = 1 + Math.sin(time * 1.5) * 0.08;
+
+          // Normal ear animations
+          leftEar.rotation.z = Math.sin(time * 2) * 0.15 + mouseX * 0.1;
+          leftEar.rotation.x = Math.sin(time * 1.5 + 0.5) * 0.1;
+
+          rightEar.rotation.z = -Math.sin(time * 2) * 0.15 - mouseX * 0.1;
+          rightEar.rotation.x = Math.sin(time * 1.5) * 0.1;
+        }
+
+        boxBot.position.y = baseY;
+
+        renderer.render(scene, camera);
+      }
+
+      init();
+      animate();
+
+      // Try to enable device orientation on mobile immediately
+      if (isMobile) {
+        requestOrientationPermission();
+      }
+    }
+
+    // GSAP Animations
+    const loadingText = new SplitType(".loading-text.initial", { types: "chars" });
+    const completeText = new SplitType(".loading-text.complete", { types: "chars" });
+    const headerTitle = new SplitType("header h1", { types: "chars" });
+    const headerTagline = new SplitType("header .tagline", { types: "chars" });
+
+    gsap.set(".loading-text.complete", { y: "100%" });
+    gsap.set(loadingText.chars, { opacity: 0, y: 100 });
+    gsap.set(completeText.chars, { opacity: 0, y: 100 });
+    gsap.set([headerTitle.chars, headerTagline.chars], { opacity: 0, y: 50 });
+
+    gsap.to(loadingText.chars, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      stagger: 0.05,
+      ease: "power2.out"
+    });
+
+    const colorStages = [
+      { bg: "rgb(60, 66, 55)", text: "rgb(230, 225, 215)" },
+      { bg: "rgb(200, 180, 160)", text: "rgb(60, 66, 55)" },
+      { bg: "rgb(230, 225, 215)", text: "rgb(60, 66, 55)" },
+      { bg: "rgb(100, 110, 90)", text: "rgb(230, 225, 215)" }
+    ];
+
+    let lastStage = -1;
+    function updateColors(progress) {
+      const stage = Math.floor(progress / 25);
+      if (stage < colorStages.length && stage !== lastStage) {
+        lastStage = stage;
+        gsap.to(".preloader", {
+          backgroundColor: colorStages[stage].bg,
+          duration: 0.6,
+          ease: "power1.inOut"
+        });
+
+        gsap.to(".progress-bar", {
+          backgroundColor: colorStages[stage].text,
+          duration: 0.6,
+          ease: "power1.inOut"
+        });
+
+        gsap.to(".loading-text .char, .percentage", {
+          color: colorStages[stage].text,
+          duration: 0.6,
+          ease: "power1.inOut",
+          stagger: 0
+        });
+      }
+    }
+
+    const tl = gsap.timeline();
+
+    tl.to(".progress-bar", {
+      width: "100%",
+      duration: 5,
+      ease: "power1.inOut",
+      onUpdate: function () {
+        const progress = Math.round(this.progress() * 100);
+        document.querySelector(".percentage").textContent = progress;
+        updateColors(progress);
+      }
+    })
+      .to(".loading-text.initial", {
+        y: "-100%",
+        duration: 0.5,
+        ease: "power2.inOut"
+      })
+      .to(".loading-text.complete", {
+        y: "0%",
+        duration: 0.5,
+        ease: "power2.inOut"
+      }, "<")
+      .to(completeText.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.3,
+        stagger: 0.03,
+        ease: "power2.out"
+      }, "<0.2")
+      .to(".preloader", {
+        y: "-100vh",
+        duration: 1,
+        ease: "power2.inOut",
+        delay: 0.8
+      })
+      .set(".portfolio-container", {
+        visibility: "visible"
+      }, "-=1")
+      .to(".menu-toggle", {
+        opacity: 1,
+        visibility: "visible",
+        duration: 0.4,
+        ease: "power2.out"
+      }, "-=0.8")
+      .to(headerTitle.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.03,
+        ease: "power4.out"
+      }, "-=0.5")
+      .to(headerTagline.chars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.02,
+        ease: "power4.out"
+      }, "-=0.4")
+      .to(".bento-item", {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.08,
+        ease: "power2.out"
+      }, "-=0.3")
+      .set(".preloader", {
+        display: "none"
+      });
+
+    gsap.set(".bento-item", { opacity: 0 });
+  </script>
+  <script>
+    // Location card slideshow: starts automatically and loops
+    (function () {
+      const cards = document.querySelectorAll('.location-card');
+      cards.forEach(card => {
+        const container = card.querySelector('.location-slideshow');
+        if (!container) return;
+        const slides = Array.from(container.querySelectorAll('img'));
+        if (!slides.length) return;
+
+        // ensure first image is visible
+        let index = 0;
+        slides.forEach((s, i) => {
+          s.classList.toggle('active', i === 0);
+        });
+
+        let timer = null;
+        const INTERVAL = 1800; // ms
+
+        function show(i) {
+          slides.forEach((s, idx) => {
+            s.classList.remove('active', 'prev');
+            if (idx === i) s.classList.add('active');
+            if (idx === (i - 1 + slides.length) % slides.length) s.classList.add('prev');
+          });
+        }
+
+        function start() {
+          if (timer) return;
+          timer = setInterval(() => {
+            index = (index + 1) % slides.length;
+            show(index);
+          }, INTERVAL);
+        }
+
+        // Start automatically
+        start();
+
+        // Preload slides for smoother transitions
+        slides.forEach(img => {
+          const pre = new Image();
+          pre.src = img.src;
+        });
+      });
+    })();
+  </script>
+  <!-- IST time updater removed to keep location card fully static -->
+  <script>
+    (function () {
+
+      'use strict';
+
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+
+      function init() {
+        // Configuration
+        const config = {
+          smoothFactor: 0.07,        // Lower = smoother/slower (0.01-0.15)
+          touchSensitivity: 0.2,     // Touch scroll multiplier (reduced for mobile)
+          inertiaMultiplier: 5,     // Momentum after touch release (reduced)
+          inertiaDecay: 0.8         // Velocity decay rate (0-1, faster decay)
+        };
+
+        // Create wrapper structure
+        const container = document.createElement('div');
+        const scroller = document.createElement('div');
+
+        container.className = 'smooth-scroll-container';
+        scroller.className = 'smooth-scroll-scroller';
+
+        // Prefer to wrap only the main `.portfolio-container` so we don't
+        // interfere with the preloader or other top-level UI that expects
+        // to remain a direct child of <body> during load.
+        const portfolio = document.querySelector('.portfolio-container');
+        const preloader = document.querySelector('.preloader');
+        if (portfolio && portfolio.parentNode) {
+          // Replace the portfolio node with the container and move portfolio into scroller
+          const parent = portfolio.parentNode;
+          parent.replaceChild(container, portfolio);
+          scroller.appendChild(portfolio);
+          container.appendChild(scroller);
+        } else {
+          // Fallback: move all body children except the preloader into the scroller
+          const body = document.body;
+          const originalContent = Array.from(body.children).filter(c => c !== preloader);
+          originalContent.forEach(child => scroller.appendChild(child));
+          container.appendChild(scroller);
+          // insert container at the end but keep preloader before it if present
+          if (preloader && preloader.parentNode === body) {
+            body.insertBefore(preloader, body.firstChild);
+            body.appendChild(container);
+          } else {
+            body.appendChild(container);
+          }
+        }
+
+        // Add required styles
+        const style = document.createElement('style');
+        style.textContent = `
+    body { overflow: hidden !important; }
+    .smooth-scroll-container { 
+    position: relative; 
+    height: 100vh; 
+    overflow: hidden; 
+    }
+    .smooth-scroll-scroller { 
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    will-change: transform;
+    transform: translateZ(0);
+    }
+  `;
+        document.head.appendChild(style);
+
+        // State variables
+        let targetY = 0;
+        let currentY = 0;
+        let maxScroll = 0;
+
+        // Helper functions
+        const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+        const lerp = (a, b, factor) => a + (b - a) * factor;
+        const round2 = v => Math.round(v * 100) / 100;
+
+        function updateBounds() {
+          maxScroll = Math.max(0, scroller.scrollHeight - window.innerHeight);
+          targetY = clamp(targetY, 0, maxScroll);
+          currentY = clamp(currentY, 0, maxScroll);
+        }
+
+        // Initialize
+        updateBounds();
+
+        // Animation loop
+        function animate() {
+          currentY = lerp(currentY, targetY, config.smoothFactor);
+          scroller.style.transform = `translate3d(0, -${round2(currentY)}px, 0)`;
+          requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+
+        // Mouse wheel handler
+        let wheelTimeout;
+        function onWheel(e) {
+          e.preventDefault();
+          targetY += e.deltaY;
+          targetY = clamp(targetY, 0, maxScroll);
+
+          clearTimeout(wheelTimeout);
+          wheelTimeout = setTimeout(() => {
+            // Reserved for additional logic (snap points, etc.)
+          }, 60);
+        }
+
+        // Touch handlers
+        let isTouchDown = false;
+        let lastTouchY = 0;
+        let touchVelocity = 0;
+        let lastTouchTime = 0;
+
+        function onTouchStart(e) {
+          isTouchDown = true;
+          lastTouchY = e.touches[0].clientY;
+          lastTouchTime = performance.now();
+          touchVelocity = 0;
+        }
+
+        function onTouchMove(e) {
+          if (!isTouchDown) return;
+          e.preventDefault();
+
+          const y = e.touches[0].clientY;
+          const delta = lastTouchY - y;
+          const now = performance.now();
+          const dt = now - lastTouchTime || 16;
+
+          touchVelocity = delta / dt * 16;
+          lastTouchY = y;
+          lastTouchTime = now;
+
+          targetY += delta * config.touchSensitivity;
+          targetY = clamp(targetY, 0, maxScroll);
+        }
+
+        function onTouchEnd() {
+          isTouchDown = false;
+
+          // Apply inertia
+          if (Math.abs(touchVelocity) > 0.2) {
+            let velocity = touchVelocity * config.inertiaMultiplier;
+
+            const applyInertia = () => {
+              velocity *= config.inertiaDecay;
+              targetY += velocity;
+              targetY = clamp(targetY, 0, maxScroll);
+
+              if (Math.abs(velocity) > 0.5) {
+                requestAnimationFrame(applyInertia);
+              }
+            };
+
+            requestAnimationFrame(applyInertia);
+          }
+        }
+
+        // Event listeners
+        window.addEventListener('resize', updateBounds);
+        container.addEventListener('wheel', onWheel, { passive: false });
+        container.addEventListener('touchstart', onTouchStart, { passive: true });
+        container.addEventListener('touchmove', onTouchMove, { passive: false });
+        container.addEventListener('touchend', onTouchEnd, { passive: true });
+
+        // Helper to scroll to an element inside the scroller and optionally center it
+        function scrollToElement(selector, center = true, offset = 24) {
+          const el = scroller.querySelector(selector) || document.querySelector(selector);
+          if (!el) return;
+          // ensure bounds are up to date
+          updateBounds();
+          // offsetTop relative to scroller content
+          let y = el.offsetTop - offset;
+          if (center) {
+            y = el.offsetTop - (window.innerHeight / 2 - el.offsetHeight / 2);
+          }
+          y = clamp(Math.round(y), 0, maxScroll);
+          targetY = y;
+        }
+
+        // Expose API for external control (optional)
+        window.SmoothScroll = {
+          scrollTo: (y) => {
+            targetY = clamp(y, 0, maxScroll);
+          },
+          scrollToElement: scrollToElement,
+          getPosition: () => currentY,
+          updateBounds: updateBounds,
+          setConfig: (newConfig) => {
+            Object.assign(config, newConfig);
+          }
+        };
+
+        // Wire About -> Contact buttons to use the smooth scroller
+        Array.from(document.querySelectorAll('.about-button')).forEach(btn => {
+          const txt = (btn.textContent || '').trim().toLowerCase();
+          if (txt === 'contact me' || txt === 'contact') {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              scrollToElement('.contact-card', true, 24);
+            });
+          }
+        });
+      }
+    })();
+    
+    // Footer spotlight effect
+    (function() {
+      const footer = document.querySelector('footer');
+      if (!footer) return;
+      
+      footer.addEventListener('mousemove', (e) => {
+        const rect = footer.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        
+        footer.style.setProperty('--mouse-x', `${x}%`);
+        footer.style.setProperty('--mouse-y', `${y}%`);
+      });
+      
+      footer.addEventListener('mouseleave', () => {
+        footer.style.setProperty('--mouse-x', '50%');
+        footer.style.setProperty('--mouse-y', '50%');
+      });
+    })();
+
+    // Double-tap to navigate on mobile for project cards
+    (function() {
+      // Check if device is mobile/touch
+      const isMobile = () => window.innerWidth <= 480 || 'ontouchstart' in window;
+      
+      if (!isMobile()) return;
+
+      const projectCards = document.querySelectorAll('.kec-card, .lostandfound-card, .luveian-card, .h-image-card');
+      const tapStates = new WeakMap();
+
+      projectCards.forEach(card => {
+        const link = card.querySelector('.bento-link');
+        if (!link) return;
+
+        // Create and add hint element
+        const hint = document.createElement('div');
+        hint.className = 'tap-hint';
+        hint.textContent = 'Tap again to view more';
+        card.appendChild(hint);
+
+        // Initialize tap state for this card
+        tapStates.set(card, { 
+          tapped: false, 
+          timeout: null 
+        });
+
+        // Prevent immediate navigation on first tap
+        link.addEventListener('click', (e) => {
+          if (!isMobile()) return; // Allow normal click on desktop
+
+          const state = tapStates.get(card);
+          
+          if (!state.tapped) {
+            // First tap - show hover state
+            e.preventDefault();
+            e.stopPropagation();
+            
+            state.tapped = true;
+            card.classList.add('force-hover');
+            
+            // Reset after 3 seconds
+            state.timeout = setTimeout(() => {
+              state.tapped = false;
+              card.classList.remove('force-hover');
+            }, 3000);
+          } else {
+            // Second tap - allow navigation
+            card.classList.remove('force-hover');
+            clearTimeout(state.timeout);
+            state.tapped = false;
+          }
+        });
+
+        // Reset on touch outside
+        document.addEventListener('touchstart', (e) => {
+          if (!card.contains(e.target)) {
+            const state = tapStates.get(card);
+            if (state.tapped) {
+              state.tapped = false;
+              card.classList.remove('force-hover');
+              clearTimeout(state.timeout);
+            }
+          }
+        });
+      });
+    })();
+
+    // Mobile services navigation buttons
+    (function() {
+      if (window.innerWidth > 480) return;
+
+      const wrapper = document.querySelector('.services-sticky-wrapper');
+      const leftBtn = document.querySelector('.service-nav-left');
+      const rightBtn = document.querySelector('.service-nav-right');
+
+      if (!wrapper || !leftBtn || !rightBtn) return;
+
+      let currentIndex = 0;
+      const cards = document.querySelectorAll('.service-card');
+
+      function updateButtons() {
+        leftBtn.disabled = currentIndex === 0;
+        rightBtn.disabled = currentIndex === cards.length - 1;
+      }
+
+      function scrollToCard(index) {
+        if (index < 0 || index >= cards.length) return;
+        
+        currentIndex = index;
+        const card = cards[index];
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.offsetWidth;
+        const wrapperWidth = wrapper.offsetWidth;
+        
+        // Center the card in the viewport
+        const scrollPosition = cardLeft - (wrapperWidth / 2) + (cardWidth / 2);
+        
+        wrapper.scrollTo({
+          left: scrollPosition,
+          behavior: 'smooth'
+        });
+        
+        updateButtons();
+      }
+
+      leftBtn.addEventListener('click', () => {
+        scrollToCard(currentIndex - 1);
+      });
+
+      rightBtn.addEventListener('click', () => {
+        scrollToCard(currentIndex + 1);
+      });
+
+      // Update buttons on scroll
+      let scrollTimeout;
+      wrapper.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          const scrollLeft = wrapper.scrollLeft;
+          const wrapperWidth = wrapper.offsetWidth;
+          const centerPosition = scrollLeft + (wrapperWidth / 2);
+          
+          let closestIndex = 0;
+          let closestDistance = Infinity;
+          
+          cards.forEach((card, index) => {
+            const cardLeft = card.offsetLeft;
+            const cardWidth = card.offsetWidth;
+            const cardCenter = cardLeft + (cardWidth / 2);
+            const distance = Math.abs(centerPosition - cardCenter);
+            
+            if (distance < closestDistance) {
+              closestDistance = distance;
+              closestIndex = index;
+            }
+          });
+          
+          currentIndex = closestIndex;
+          updateButtons();
+        }, 100);
+      });
+
+      updateButtons();
+      
+      // Center first card on load
+      setTimeout(() => {
+        scrollToCard(0);
+      }, 500);
+    })();
+  </script>
+  <script>
+    // Work section h2 hover text effect
+    (function() {
+      if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') return;
+
+      const workLinks = document.querySelectorAll('.work-step h2 a.hover-text-effect');
+      
+      workLinks.forEach(link => {
+        const textWraps = link.querySelectorAll('.text-wrap');
+        if (textWraps.length !== 2) return;
+        
+        const text1 = textWraps[0];
+        const text2 = textWraps[1];
+        
+        // Split text into characters
+        const split1 = new SplitType(text1, { types: "words,chars" });
+        const split2 = new SplitType(text2, { types: "words,chars" });
+        
+        const chars1 = split1.chars;
+        const chars2 = split2.chars;
+        
+        // Create timeline
+        const tlHover = gsap.timeline({ paused: true })
+          .to(chars1, {
+            yPercent: -100,
+            duration: 0.8,
+            ease: "power3.inOut",
+            stagger: 0.03
+          })
+          .from(chars2, {
+            yPercent: 100,
+            duration: 0.8,
+            ease: "power3.inOut",
+            stagger: 0.03
+          }, 0.1);
+        
+        // Track tap state for mobile
+        let isTapActive = false;
+        let tapTimeout;
+        
+        // Hover events for desktop
+        link.addEventListener('mouseenter', () => {
+          tlHover.play();
+        });
+        
+        link.addEventListener('mouseleave', () => {
+          tlHover.reverse();
+        });
+        
+        // Touch/Click events for mobile
+        link.addEventListener('click', (e) => {
+          // Check if it's a touch device or small screen
+          const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                          ('ontouchstart' in window);
+          
+          if (isMobile) {
+            if (!isTapActive) {
+              // First tap - show animation only
+              e.preventDefault();
+              e.stopPropagation();
+              isTapActive = true;
+              link.classList.add('tap-active');
+              tlHover.play();
+              
+              // Reset after 3 seconds
+              clearTimeout(tapTimeout);
+              tapTimeout = setTimeout(() => {
+                isTapActive = false;
+                link.classList.remove('tap-active');
+                tlHover.reverse();
+              }, 3000);
+            } else {
+              // Second tap - allow link to open
+              link.classList.remove('tap-active');
+            }
+          }
+        });
+      });
+    })();
+  </script>
+  <script>
+    // Menu social links hover text effect (reuses Work-section animation)
+    (function() {
+      if (typeof gsap === 'undefined' || typeof SplitType === 'undefined') return;
+
+      const socialLinks = document.querySelectorAll('.menu-overlay__socials a.hover-text-effect');
+
+      socialLinks.forEach(link => {
+        const textWraps = link.querySelectorAll('.text-wrap');
+        if (textWraps.length !== 2) return;
+
+        const text1 = textWraps[0];
+        const text2 = textWraps[1];
+
+        // Split into characters
+        const split1 = new SplitType(text1, { types: 'words,chars' });
+        const split2 = new SplitType(text2, { types: 'words,chars' });
+
+        const chars1 = split1.chars;
+        const chars2 = split2.chars;
+
+        const tl = gsap.timeline({ paused: true })
+          .to(chars1, {
+            yPercent: -100,
+            duration: 0.6,
+            ease: 'power3.inOut',
+            stagger: 0.02
+          })
+          .from(chars2, {
+            yPercent: 100,
+            duration: 0.6,
+            ease: 'power3.inOut',
+            stagger: 0.02
+          }, 0.05);
+
+        // Hover
+        link.addEventListener('mouseenter', () => tl.play());
+        link.addEventListener('mouseleave', () => tl.reverse());
+
+        // Focus accessibility
+        link.addEventListener('focus', () => tl.play());
+        link.addEventListener('blur', () => tl.reverse());
+
+        // Mobile two-tap handling (same pattern as Work items)
+        let isTapActive = false;
+        let tapTimeout;
+
+        link.addEventListener('click', (e) => {
+          const isMobile = window.matchMedia('(max-width: 768px)').matches || ('ontouchstart' in window);
+          if (isMobile) {
+            if (!isTapActive) {
+              e.preventDefault();
+              e.stopPropagation();
+              isTapActive = true;
+              link.classList.add('tap-active');
+              tl.play();
+              clearTimeout(tapTimeout);
+              tapTimeout = setTimeout(() => {
+                isTapActive = false;
+                link.classList.remove('tap-active');
+                tl.reverse();
+              }, 3000);
+            } else {
+              link.classList.remove('tap-active');
+            }
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
