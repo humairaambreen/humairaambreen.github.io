@@ -9,6 +9,58 @@
     content="Humaira Ambreen - Creative professional specializing in design, development, and digital innovation.">
   <meta name="keywords" content="Humaira Ambreen, portfolio, creative professional, designer, developer">
   <meta name="author" content="Humaira Ambreen">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#5a6450">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+  <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <link rel="canonical" href="https://humairaambreen.github.io/">
+  <link rel="alternate" hreflang="en" href="https://humairaambreen.github.io/">
+  <link rel="alternate" type="application/rss+xml" title="Humaira Ambreen RSS Feed" href="https://humairaambreen.github.io/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Humaira Ambreen Atom Feed" href="https://humairaambreen.github.io/atom.xml">
+  <link rel="alternate" type="application/feed+json" title="Humaira Ambreen JSON Feed" href="https://humairaambreen.github.io/feed.json">
+  <meta name="pinterest-rich-pin" content="true">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Humaira Ambreen | Creative Professional Portfolio">
+  <meta property="og:description"
+    content="Explore Humaira Ambreen's portfolio featuring full-stack development, UI/UX design, and creative digital work.">
+  <meta property="og:url" content="https://humairaambreen.github.io/">
+  <meta property="og:site_name" content="Humaira Ambreen">
+  <meta property="og:image" content="https://humairaambreen.github.io/assets/og.png">
+  <meta property="og:image:alt" content="Humaira Ambreen portfolio preview">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Humaira Ambreen | Creative Professional Portfolio">
+  <meta name="twitter:description"
+    content="Explore Humaira Ambreen's portfolio featuring full-stack development, UI/UX design, and creative digital work.">
+  <meta name="twitter:image" content="https://humairaambreen.github.io/assets/og.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Humaira Ambreen",
+      "url": "https://humairaambreen.github.io/",
+      "image": "https://humairaambreen.github.io/assets/og.png",
+      "jobTitle": "Full-Stack Developer & Designer",
+      "sameAs": [
+        "https://github.com/humairaambreen",
+        "https://linkedin.com/in/humairaambreen"
+      ]
+    }
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Humaira Ambreen",
+      "url": "https://humairaambreen.github.io/"
+    }
+  </script>
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&family=Playfair+Display:wght@400;700&display=swap");
@@ -765,19 +817,22 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 1.5rem;
+      padding: 0.6rem;
       background: rgba(200, 180, 160, 0.05);
       border: 1.5px solid var(--color-border);
       cursor: default;
+      overflow: hidden;
     }
 
     .github-stats-card img,
     .github-activity-card img,
     .github-languages-card img {
       width: 100%;
+      height: auto;
       max-height: 100%;
       object-fit: contain;
-      border-radius: 12px;
+      object-position: center;
+      border-radius: 10px;
       opacity: 0.9;
       transition: opacity 0.3s ease;
     }
@@ -786,6 +841,10 @@
     .github-activity-card:hover img,
     .github-languages-card:hover img {
       opacity: 1;
+    }
+
+    .github-stats-card img {
+      filter: sepia(32%) saturate(52%) hue-rotate(334deg) brightness(1.06) contrast(0.96);
     }
 
     /* Frost Nova Game Card */
@@ -2632,12 +2691,7 @@
           experiences. With expertise in design, development, and strategic thinking, I transform ideas into
           impactful solutions.</p>
         <div class="about-buttons">
-          <a href="#" class="about-button primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
+          <a href="/resume" class="about-button primary">
             Resume
           </a>
           <a href="#" class="about-button">Contact Me</a>
@@ -2668,14 +2722,14 @@
       <!-- GitHub Stats Card: 4 columns, 2 rows -->
       <div class="bento-item github-stats-card" data-col="3" data-row="1">
         <img
-          src="https://github-readme-stats.vercel.app/api?username=humairaambreen&show_icons=true&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e6e1d7&text_color=e6e1d7&icon_color=c8b4a0"
+          src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=humairaambreen&theme=transparent"
           alt="Profile Stats">
       </div>
 
       <!-- Luveian Project -->
       <div class="bento-item luveian-card" data-col="5" data-row="3">
         <div class="bento-image">
-          <img src="https://aryansrao.github.io/assets/luveianlogo.jpg" alt="Web Development" class="default-img">
+          <img src="https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg" alt="Web Development" class="default-img">
           <img src="/assets/covers/luveian.gif" alt="Coding" class="hover-img">
         </div>
         <a class="bento-link" href="#work-luveian" aria-label="Go to Luveian details"></a>
@@ -2695,8 +2749,8 @@
       <!-- Most Used Languages: 3 columns, 2 rows -->
       <div class="bento-item github-activity-card" data-col="4" data-row="1">
         <img
-          src="https://github-readme-stats.vercel.app/api/top-langs/?username=humairaambreen&layout=compact&theme=tokyonight&hide_border=true&bg_color=00000000&title_color=e6e1d7&text_color=e6e1d7"
-          alt="Most Used Languages">
+          src="https://streak-stats.demolab.com?user=humairaambreen&hide_border=true&background=00000000&ring=c8b4a0&fire=c8b4a0&currStreakLabel=000000&sideLabels=000000&dates=000000&currStreakNum=000000&sideNums=000000"
+          alt="GitHub Streak Stats">
       </div>
 
       <!-- Frost Nova Game: 3 columns, 2 rows -->
@@ -2794,7 +2848,7 @@
           want to say hello, feel free to reach out!</p>
 
         <div class="contact-actions">
-          <a href="#" class="contact-action" aria-label="Schedule a meeting">
+          <a href="https://cal.com/humairaambreen" class="contact-action" aria-label="Schedule a meeting">
             <!-- calendar icon -->
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -2878,7 +2932,7 @@
               </svg>
             </a>
 
-            <a class="mini" href="./support/" aria-label="Support (donate)" title="Support">
+            <a class="mini" href="./support" aria-label="Support (donate)" title="Support">
               <!-- Indian Rupee as text for reliability across platforms -->
               <span class="rupee" aria-hidden="true">₹</span>
             </a>
