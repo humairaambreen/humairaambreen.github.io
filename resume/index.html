@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>humairaambreen_resume</title>
+  <meta name="description" content="Resume of Humaira Ambreen — Full-Stack Developer and Designer.">
+  <meta name="author" content="Humaira Ambreen">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#5a6450">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+  <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <link rel="canonical" href="https://humairaambreen.github.io/resume/">
+  <link rel="alternate" hreflang="en" href="https://humairaambreen.github.io/resume/">
+  <link rel="alternate" type="application/rss+xml" title="Humaira Ambreen RSS Feed" href="https://humairaambreen.github.io/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Humaira Ambreen Atom Feed" href="https://humairaambreen.github.io/atom.xml">
+  <link rel="alternate" type="application/feed+json" title="Humaira Ambreen JSON Feed" href="https://humairaambreen.github.io/feed.json">
+  <meta name="pinterest-rich-pin" content="true">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Resume | Humaira Ambreen">
+  <meta property="og:description" content="Resume of Humaira Ambreen — Full-Stack Developer and Designer.">
+  <meta property="og:url" content="https://humairaambreen.github.io/resume/">
+  <meta property="og:site_name" content="Humaira Ambreen">
+  <meta property="og:image" content="https://humairaambreen.github.io/assets/og.png">
+  <meta property="og:image:alt" content="Resume preview for Humaira Ambreen">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Resume | Humaira Ambreen">
+  <meta name="twitter:description" content="Resume of Humaira Ambreen — Full-Stack Developer and Designer.">
+  <meta name="twitter:image" content="https://humairaambreen.github.io/assets/og.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "Resume | Humaira Ambreen",
+      "url": "https://humairaambreen.github.io/resume/",
+      "description": "Resume of Humaira Ambreen — Full-Stack Developer and Designer."
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    :root {
+      --page-w: 210mm; --mh: 11mm; --mv: 10mm;
+      --col: 115px; --gap: 20px; --f: 'Libre Franklin', sans-serif
+    }
+    body { background: #e8e8e8; font-family: var(--f); font-size: 9pt; color: #222; -webkit-print-color-adjust: exact; print-color-adjust: exact }
+    .print-bar { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 999; transition: opacity .35s, visibility .35s }
+    .print-bar.hidden { opacity: 0; visibility: hidden; pointer-events: none }
+    .bar-actions { display: flex; align-items: center; gap: 10px }
+    .btn-print, .btn-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      font-family: var(--f);
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 30px;
+      border: 1px solid rgb(41, 41, 41);
+      background: rgb(0, 0, 0);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.14);
+      transition: background .2s ease, box-shadow .2s ease, border-color .2s ease, transform .2s ease;
+      text-decoration: none;
+    }
+    .btn-print:focus-visible, .btn-home:focus-visible {
+      outline: 2px solid rgba(0,0,0,.28);
+      outline-offset: 2px;
+    }
+    .page { width: var(--page-w); background: #fff; margin: 20px auto 80px; padding: var(--mv) var(--mh); box-shadow: 0 4px 40px rgba(0,0,0,.18) }
+    .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px }
+    .name { font-size: 18pt; font-weight: 700; letter-spacing: -.3px; color: #111; line-height: 1 }
+    .contact-line { font-size: 7.3pt; color: #777; margin-top: 3px; font-weight: 300 }
+    .contact-line a { color: #555; text-decoration: none; border-bottom: 1px solid #ddd }
+    .contact-line a:hover { color: #111; border-color: #111 }
+    .header-right { font-size: 10.5pt; font-weight: 400; color: #111; text-align: right; padding-top: 3px }
+    .divider { border: none; border-top: 1px solid #d0d0d0 }
+    .section { display: flex; gap: var(--gap); padding: 11px 0; border-bottom: 1px solid #ebebeb }
+    .section:last-child { border-bottom: none }
+    .label { flex: 0 0 var(--col); font-size: 8.5pt; color: #888; font-weight: 400; padding-top: 2px; letter-spacing: .02em }
+    .body { flex: 1; min-width: 0 }
+    .summary { font-style: italic; font-size: 8.7pt; color: #444; line-height: 1.58; font-weight: 300 }
+    .entry { margin-bottom: 10px }
+    .entry:last-child { margin-bottom: 0 }
+    .entry-title { font-size: 10pt; font-weight: 700; color: #111; margin-bottom: 1px }
+    .entry-meta { font-size: 7.8pt; margin-bottom: 3px; line-height: 1.4 }
+    .entry-meta .co { font-weight: 700; color: #111 }
+    .entry-meta .dt { font-style: italic; font-weight: 300; color: #666 }
+    .entry-desc { font-size: 8.2pt; color: #333; line-height: 1.52; font-weight: 300 }
+    .entry-link { font-size: 7.4pt; color: #aaa; margin-top: 2px; font-weight: 300 }
+    .entry-link a { color: #aaa; text-decoration: none; border-bottom: 1px solid #e8e8e8 }
+    .entry-link a:hover { color: #555; border-color: #aaa }
+    .skills-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px; margin-bottom: 9px }
+    .skills-bottom { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px }
+    .skill-group-title { font-size: 9.5pt; font-weight: 700; color: #111; margin-bottom: 3px }
+    .skill-list { list-style: none }
+    .skill-list li { font-size: 8pt; color: #444; line-height: 1.7; font-weight: 300 }
+    .edu-title { font-size: 10pt; font-weight: 700; color: #111; margin-bottom: 1px }
+    .edu-sub { font-size: 8.2pt; font-style: italic; color: #666; font-weight: 300; margin-bottom: 8px }
+    .edu-sub:last-child { margin-bottom: 0 }
+    .stacks { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; margin-top: 5px }
+    .stack-pill { font-size: 6.5pt; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #555; border: 1px solid #ccc; border-radius: 20px; padding: 1px 7px }
+    @media (max-width: 768px) {
+      body { background: #fff; font-size: 10pt }
+      .print-bar {
+        position: fixed;
+        top: auto;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 18px);
+        max-width: 430px;
+        padding: 0;
+        background: transparent;
+        border: none;
+        z-index: 999;
+      }
+      .bar-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px }
+      .btn-print, .btn-home { width: 100%; text-align: center; padding: 10px 12px; font-size: 8.5pt; letter-spacing: .04em }
+      .page { width: 100%; margin: 0; padding: 16px 14px 84px; box-shadow: none }
+      .header { flex-direction: column; gap: 8px; margin-bottom: 10px }
+      .header-right { text-align: left; padding-top: 0; font-size: 9.5pt }
+      .stacks { justify-content: flex-start }
+      .contact-line { font-size: 8.2pt; line-height: 1.6; margin-top: 6px }
+      .name { font-size: 20pt }
+      .section { flex-direction: column; gap: 6px; padding: 12px 0 }
+      .label { flex: none; font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; color: #777 }
+      .entry-title, .edu-title, .skill-group-title { font-size: 10.5pt }
+      .entry-meta { font-size: 8.4pt }
+      .entry-desc, .summary, .edu-sub { font-size: 9pt; line-height: 1.6 }
+      .skills-top, .skills-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 12px; margin-bottom: 10px }
+    }
+
+    @media (max-width: 420px) {
+      .page { padding: 14px 10px 20px }
+      .contact-line { font-size: 8pt }
+      .btn-print, .btn-home { font-size: 8pt; padding: 10px }
+      .skills-top, .skills-bottom { grid-template-columns: 1fr }
+    }
+
+    @media print {
+      @page { size: A4; margin: 0 }
+      html, body { background: none; height: auto }
+      .print-bar { display: none !important }
+      .page { margin: 0 !important; box-shadow: none; width: 100%; padding: var(--mv) var(--mh) }
+      a { color: #333 !important; text-decoration: underline !important; text-decoration-thickness: 0.3pt !important; text-underline-offset: 1.5pt !important; text-decoration-color: #888 !important }
+      .entry, .edu-title { page-break-inside: avoid }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-bar">
+    <div class="bar-actions">
+      <a class="btn-home" href="/">Back to Home</a>
+      <button class="btn-print" onclick="triggerPrint()">Print / Save PDF</button>
+    </div>
+  </div>
+  <div class="page" id="resumePage">
+
+    <header class="header">
+      <div>
+        <div class="name">Humaira Ambreen</div>
+        <div class="contact-line">
+          <a href="mailto:hussainhuma2004@gmail.com">hussainhuma2004@gmail.com</a> &nbsp;&middot;&nbsp;
+          <a href="https://github.com/humairaambreen" target="_blank">github.com/humairaambreen</a> &nbsp;&middot;&nbsp;
+          <a href="https://linkedin.com/in/humairaambreen" target="_blank">linkedin.com/in/humairaambreen</a> &nbsp;&middot;&nbsp;
+          <a href="https://humairaambreen.github.io" target="_blank">humairaambreen.github.io</a>
+        </div>
+      </div>
+      <div class="header-right">
+        Full-Stack Developer &amp; Designer
+        <div class="stacks">
+          <span class="stack-pill">JS Stack</span>
+          <span class="stack-pill">Java Stack</span>
+          <span class="stack-pill">Python Stack</span>
+        </div>
+      </div>
+    </header>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="label">About</div>
+      <div class="body">
+        <p class="summary">Full-stack developer and designer proficient across three technology stacks — JavaScript (React / Node / Express), Java (Spring Boot / Hibernate / JPA), and Python (Django / Flask / FastAPI) — with proven experience shipping production web applications end-to-end. Strong focus on clean architecture, RESTful API design, accessible UI, and performance optimisation. Equally fluent in Figma and a terminal; comfortable owning the full delivery cycle from wireframe to deployment.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">Experience</div>
+      <div class="body">
+        <div class="entry">
+          <div class="entry-title">Full-Stack Developer &amp; Lead Designer</div>
+          <div class="entry-meta">
+            <span class="co">Luveian</span>
+            <span class="dt"> &nbsp;&middot;&nbsp; Remote &nbsp;&middot;&nbsp; October 2024 &ndash; Present</span>
+          </div>
+          <div class="entry-desc">Owned full-stack development and all UX/UI design for Luveian's production web platform. Engineered modular React component systems and RESTful backend APIs with Node.js and Express, applying MVC architecture patterns throughout. Led end-to-end design delivery — from lo-fi wireframes in Figma to pixel-perfect, responsive production CSS — and implemented critical rendering optimisations that measurably improved page performance and conversion on customer-facing surfaces.</div>
+          <div class="entry-link"><a href="https://luveian.com" target="_blank">luveian.com</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">Projects</div>
+      <div class="body">
+        <div class="entry">
+          <div class="entry-title">KeyFinder &mdash; LinkedIn Job Market Analyser</div>
+          <div class="entry-meta"><span class="dt">Python &middot; Flask &middot; BeautifulSoup4 &middot; Pandas &middot; NLP &middot; REST API &middot; 2025</span></div>
+          <div class="entry-desc">Python/Flask web app that scrapes LinkedIn job postings and performs keyword frequency analysis to surface trending skills and qualifications. Implements a multi-stage NLP pipeline — HTML parsing with BeautifulSoup4, regex-based text normalisation, configurable noise-word filtering, and n-gram extraction (unigrams, bigrams, trigrams) — to rank keywords by job-market demand. Features real-time progress tracking via a polling API, CSV export with Pandas, and a responsive zero-dependency frontend.</div>
+          <div class="entry-link">
+            <a href="https://keyfinder-msnk.onrender.com" target="_blank">keyfinder-msnk.onrender.com</a> &nbsp;&middot;&nbsp;
+            <a href="https://github.com/humairaambreen/keyfinder" target="_blank">github.com/humairaambreen/keyfinder</a>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-title">Lost &amp; Found &mdash; Campus PWA</div>
+          <div class="entry-meta"><span class="dt">JavaScript &middot; Firebase Realtime DB &middot; PWA &middot; Service Workers &middot; REST API &middot; July 2025</span></div>
+          <div class="entry-desc">Real-time progressive web app enabling college students to post and locate lost items. Architected on Firebase Realtime Database for sub-second sync with base64 image persistence, full offline fallback via Service Workers, and a lightweight social feed for item coordination. Fully installable as a native-style PWA.</div>
+          <div class="entry-link">
+            <a href="https://lostandfound-0brr.onrender.com" target="_blank">lostandfound-0brr.onrender.com</a> &nbsp;&middot;&nbsp;
+            <a href="https://github.com/humairaambreen/lostandfound" target="_blank">github.com/humairaambreen/lostandfound</a>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-title">KEC &mdash; College Resource Portal</div>
+          <div class="entry-meta"><span class="dt">HTML5 &middot; CSS3 &middot; JavaScript &middot; GSAP &middot; html-to-image.js &middot; December 2024</span></div>
+          <div class="entry-desc">Accessible, sub-second-loading resource hub for Krishna Engineering College — notes, past papers, syllabus, and faculty directory. Ships an in-browser ID-card generator that composes styled HTML into a downloadable PNG client-side. Optimised for low-bandwidth environments with WCAG-aligned accessibility.</div>
+          <div class="entry-link">
+            <a href="https://kec-live.netlify.app" target="_blank">kec-live.netlify.app</a> &nbsp;&middot;&nbsp;
+            <a href="https://github.com/humairaambreen/kec" target="_blank">github.com/humairaambreen/kec</a>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry-title">Personal Portfolio</div>
+          <div class="entry-meta"><span class="dt">HTML5 &middot; CSS3 &middot; JavaScript &middot; GSAP &middot; April 2025</span></div>
+          <div class="entry-desc">Motion-rich developer portfolio with scroll-driven GSAP animations, live GitHub stats API integration, and project showcases. Engineered from scratch targeting 60 fps on mid-to-low-end devices and Core Web Vitals compliance.</div>
+          <div class="entry-link"><a href="https://humairaambreen.github.io" target="_blank">humairaambreen.github.io</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">Skills</div>
+      <div class="body">
+        <div class="skills-top">
+          <div class="skill-group">
+            <div class="skill-group-title">JS Full-Stack</div>
+            <ul class="skill-list">
+              <li>React.js &amp; JSX</li>
+              <li>Node.js &amp; Express.js</li>
+              <li>REST API Design</li>
+              <li>Firebase Realtime DB</li>
+              <li>PWA / Service Workers</li>
+              <li>GSAP &middot; Bootstrap</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Java Full-Stack</div>
+            <ul class="skill-list">
+              <li>Java (OOP, Collections)</li>
+              <li>Spring Boot &amp; Spring MVC</li>
+              <li>Hibernate &amp; JPA</li>
+              <li>Maven &amp; Gradle</li>
+              <li>MySQL &amp; JDBC</li>
+              <li>RESTful Web Services</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Python Full-Stack</div>
+            <ul class="skill-list">
+              <li>Python (3.x)</li>
+              <li>Django &amp; Flask</li>
+              <li>FastAPI</li>
+              <li>SQLAlchemy &amp; ORM</li>
+              <li>Pandas &amp; NumPy</li>
+              <li>Web Scraping / NLP</li>
+            </ul>
+          </div>
+        </div>
+        <div class="skills-bottom">
+          <div class="skill-group">
+            <div class="skill-group-title">Frontend &amp; Design</div>
+            <ul class="skill-list">
+              <li>HTML5 &amp; CSS3</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Responsive &amp; Accessible UI</li>
+              <li>Figma &middot; Wireframing</li>
+              <li>UI/UX Design Principles</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Databases &amp; APIs</div>
+            <ul class="skill-list">
+              <li>MySQL &middot; PostgreSQL</li>
+              <li>MongoDB (NoSQL)</li>
+              <li>Firebase &middot; Supabase</li>
+              <li>REST &middot; JSON &middot; JWT Auth</li>
+              <li>Postman &amp; API Testing</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Cloud &amp; DevOps</div>
+            <ul class="skill-list">
+              <li>Git &amp; GitHub &middot; CI/CD</li>
+              <li>Docker (Containerisation)</li>
+              <li>AWS (EC2, S3 basics)</li>
+              <li>Netlify &middot; Vercel &middot; Render</li>
+              <li>Linux / CLI &middot; Bash</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">Education</div>
+      <div class="body">
+        <div class="edu-title">Krishna Engineering College, Bhilai</div>
+        <div class="edu-sub">B.Tech in Computer Science &amp; Engineering &nbsp;&middot;&nbsp; 2022 &ndash; 2026</div>
+        <div class="edu-title">Amresh Sharma Public School</div>
+        <div class="edu-sub">12th &mdash; PCM + Computer Science &nbsp;&middot;&nbsp; 59.7% &nbsp;&middot;&nbsp; 2021 &ndash; 2022</div>
+        <div class="edu-title">Amresh Sharma Public School</div>
+        <div class="edu-sub">10th &nbsp;&middot;&nbsp; 73.2% &nbsp;&middot;&nbsp; 2019 &ndash; 2020</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="label">Certificates</div>
+      <div class="body">
+        <div class="edu-title">Data Analytics &mdash; Techonet Private Limited</div>
+        <div class="edu-sub">Vocational Training &nbsp;&middot;&nbsp; 1 Month &nbsp;&middot;&nbsp; May &ndash; June 2025 &nbsp;&middot;&nbsp; Ref: TECHONET/VT/2025/07/0395</div>
+        <div class="edu-title">Frontend Development &mdash; Digitalshakha</div>
+        <div class="edu-sub">Vocational Training &nbsp;&middot;&nbsp; 1 Month &nbsp;&middot;&nbsp; July &ndash; August 2024 &nbsp;&middot;&nbsp; Reg. no. DSVT24327</div>
+      </div>
+    </section>
+
+  </div>
+  <script>
+    var bar = document.querySelector('.print-bar');
+    var lastY = 0, ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          var y = window.scrollY;
+          bar.classList.toggle('hidden', y > lastY && y > 60);
+          lastY = y; ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    var page = document.getElementById('resumePage');
+    var A4_H = (297 / 25.4) * 96;
+
+    function fitPage() {
+      page.style.zoom = '';
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+      var naturalH = page.scrollHeight;
+      if (naturalH > A4_H) {
+        var z = Math.floor((A4_H / naturalH) * 1000) / 1000;
+        page.style.zoom = String(z);
+      }
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitPage);
+    } else {
+      window.addEventListener('load', fitPage);
+    }
+    window.addEventListener('resize', fitPage);
+
+    function triggerPrint() {
+      document.title = 'humairaambreen_resume';
+      fitPage();
+      setTimeout(function () { window.print(); }, 120);
+    }
+
+    window.addEventListener('beforeprint', function () {
+      document.title = 'humairaambreen_resume';
+      fitPage();
+    });
+  </script>
+</body>
+</html>
