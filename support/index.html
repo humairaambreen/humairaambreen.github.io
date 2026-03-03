@@ -8,6 +8,42 @@
   <meta name="description" content="Support Humaira Ambreen - Show your appreciation with a tip or donation">
   <meta name="keywords" content="Humaira Ambreen, support, donate, tip">
   <meta name="author" content="Humaira Ambreen">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="#5a6450">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png">
+  <link rel="shortcut icon" href="/assets/favicon/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  <link rel="canonical" href="https://humairaambreen.github.io/support/">
+  <link rel="alternate" hreflang="en" href="https://humairaambreen.github.io/support/">
+  <link rel="alternate" type="application/rss+xml" title="Humaira Ambreen RSS Feed" href="https://humairaambreen.github.io/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Humaira Ambreen Atom Feed" href="https://humairaambreen.github.io/atom.xml">
+  <link rel="alternate" type="application/feed+json" title="Humaira Ambreen JSON Feed" href="https://humairaambreen.github.io/feed.json">
+  <meta name="pinterest-rich-pin" content="true">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Support | Humaira Ambreen">
+  <meta property="og:description" content="Support Humaira Ambreen with UPI or international contributions.">
+  <meta property="og:url" content="https://humairaambreen.github.io/support/">
+  <meta property="og:site_name" content="Humaira Ambreen">
+  <meta property="og:image" content="https://humairaambreen.github.io/assets/og.png">
+  <meta property="og:image:alt" content="Support page preview for Humaira Ambreen">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Support | Humaira Ambreen">
+  <meta name="twitter:description" content="Support Humaira Ambreen with UPI or international contributions.">
+  <meta name="twitter:image" content="https://humairaambreen.github.io/assets/og.png">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Support | Humaira Ambreen",
+      "url": "https://humairaambreen.github.io/support/",
+      "description": "Support Humaira Ambreen with UPI or international contributions."
+    }
+  </script>
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&family=Playfair+Display:wght@400;700&display=swap");
@@ -230,7 +266,8 @@
       justify-content: center;
       background: rgba(200, 180, 160, 0.08);
       grid-column: span 3;
-      grid-row: span 2;
+      grid-row: span 3;
+      padding: 1.4rem;
     }
 
     .qr-card h3 {
@@ -242,8 +279,8 @@
     }
 
     .qr-card .qr-code {
-      width: 180px;
-      height: 180px;
+      width: 196px;
+      height: 196px;
       background: white;
       padding: 0.6rem;
       border-radius: 12px;
@@ -253,9 +290,14 @@
       justify-content: center;
     }
 
-    .qr-card .qr-code img {
+    .qr-card .qr-code img,
+    .qr-card .qr-code canvas {
       display: block;
       margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      image-rendering: crisp-edges;
     }
 
     .qr-card .upi-id {
@@ -267,13 +309,51 @@
       border-radius: 8px;
       border: 1px solid var(--color-border);
       user-select: all;
-      cursor: pointer;
       transition: all 0.3s ease;
+      margin-bottom: 0.7rem;
     }
 
     .qr-card .upi-id:hover {
       background: rgba(200, 180, 160, 0.25);
       border-color: var(--color-accent);
+    }
+
+    .upi-actions {
+      display: flex;
+      gap: 0.6rem;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .upi-action-btn {
+      padding: 0.45rem 0.85rem;
+      background: rgba(200, 180, 160, 0.15);
+      border: 1.5px solid var(--color-border);
+      border-radius: 10px;
+      color: var(--color-foreground);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-width: 92px;
+      text-align: center;
+    }
+
+    .upi-action-btn:hover {
+      background: rgba(200, 180, 160, 0.3);
+      border-color: var(--color-accent);
+      transform: translateY(-1px);
+    }
+
+    .upi-action-btn:focus {
+      outline: none;
+    }
+
+    .upi-action-btn:focus-visible {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 2px rgba(230, 225, 215, 0.22);
     }
 
     /* Tipping Options Card */
@@ -680,6 +760,10 @@
       .tips-card {
         grid-column: span 8;
       }
+
+      .qr-card {
+        grid-row: span 2;
+      }
     }
 
     @media (max-width: 768px) {
@@ -786,7 +870,11 @@
       <div class="bento-item qr-card">
         <h3>Scan to Pay (UPI)</h3>
         <div class="qr-code" id="qrCode"></div>
-        <div class="upi-id" title="Click to copy">hussainhuma2004@oksbi</div>
+        <div class="upi-id">hussainhuma2004@oksbi</div>
+        <div class="upi-actions">
+          <button class="upi-action-btn" id="copyUpiBtn" type="button">Copy UPI ID</button>
+          <button class="upi-action-btn" id="openUpiBtn" type="button">Open UPI</button>
+        </div>
       </div>
 
       <!-- Tipping Options Card -->
@@ -912,15 +1000,22 @@
       correctLevel: QRCode.CorrectLevel.H
     });
 
-    // Copy UPI ID on click
-    document.querySelector('.upi-id').addEventListener('click', function () {
+    // UPI action buttons
+    const copyUpiBtn = document.getElementById('copyUpiBtn');
+    const openUpiBtn = document.getElementById('openUpiBtn');
+
+    copyUpiBtn.addEventListener('click', function () {
       navigator.clipboard.writeText(upiId).then(() => {
         const original = this.textContent;
-        this.textContent = '✓ Copied!';
+        this.textContent = '✓ Copied';
         setTimeout(() => {
           this.textContent = original;
-        }, 2000);
+        }, 1600);
       });
+    });
+
+    openUpiBtn.addEventListener('click', function () {
+      window.location.href = upiUrl;
     });
 
     // Function to generate QR code with amount
