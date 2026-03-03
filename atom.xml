@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Humaira Ambreen</title>
+  <subtitle>Portfolio updates, projects, support information, and resume updates.</subtitle>
+  <id>https://humairaambreen.github.io/</id>
+  <updated>2026-03-04T00:00:00Z</updated>
+  <link rel="self" href="https://humairaambreen.github.io/atom.xml" />
+  <link rel="alternate" href="https://humairaambreen.github.io/" />
+  <logo>https://humairaambreen.github.io/assets/og.png</logo>
+  <icon>https://humairaambreen.github.io/assets/favicon/favicon-96x96.png</icon>
+  <author>
+    <name>Humaira Ambreen</name>
+    <email>hussainhuma2004@gmail.com</email>
+  </author>
+  <entry>
+    <title>Luveian — Full-Stack Internship Project</title>
+    <id>https://luveian.com</id>
+    <link href="https://luveian.com" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Production web platform work: full-stack development, UX/UI design, and performance optimization.</summary>
+    <content type="html">&lt;p&gt;Production web platform work: full-stack development, UX/UI design, and performance optimization.&lt;/p&gt;&lt;img src="https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg" alt="Luveian project cover" /&gt;</content>
+  </entry>
+  <entry>
+    <title>Lost &amp; Found — Campus PWA</title>
+    <id>https://lostandfound-0brr.onrender.com/</id>
+    <link href="https://lostandfound-0brr.onrender.com/" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Progressive web app for campus lost &amp; found workflows with real-time sync and offline support.</summary>
+    <content type="html">&lt;p&gt;Progressive web app for campus lost &amp; found workflows with real-time sync and offline support.&lt;/p&gt;&lt;img src="https://humairaambreen.github.io/assets/l&amp;amp;f.png" alt="Lost and Found project cover" /&gt;</content>
+  </entry>
+  <entry>
+    <title>KEC — College Resource Portal</title>
+    <id>https://kec-live.netlify.app/</id>
+    <link href="https://kec-live.netlify.app/" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Lightweight college resource hub with accessibility-first design and in-browser ID card generation.</summary>
+    <content type="html">&lt;p&gt;Lightweight college resource hub with accessibility-first design and in-browser ID card generation.&lt;/p&gt;&lt;img src="https://humairaambreen.github.io/assets/kec.png" alt="KEC project cover" /&gt;</content>
+  </entry>
+  <entry>
+    <title>Portfolio Home</title>
+    <id>https://humairaambreen.github.io/</id>
+    <link href="https://humairaambreen.github.io/" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Main portfolio page with projects, services, and contact information.</summary>
+    <content type="html">&lt;p&gt;Main portfolio page with projects, services, and contact information.&lt;/p&gt;&lt;img src="https://humairaambreen.github.io/assets/og.png" alt="Portfolio preview" /&gt;</content>
+  </entry>
+  <entry>
+    <title>Resume</title>
+    <id>https://humairaambreen.github.io/resume/</id>
+    <link href="https://humairaambreen.github.io/resume/" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Professional resume of Humaira Ambreen.</summary>
+    <content type="html">&lt;p&gt;Professional resume of Humaira Ambreen.&lt;/p&gt;&lt;img src="https://humairaambreen.github.io/assets/og.png" alt="Resume preview" /&gt;</content>
+  </entry>
+  <entry>
+    <title>Support</title>
+    <id>https://humairaambreen.github.io/support/</id>
+    <link href="https://humairaambreen.github.io/support/" />
+    <updated>2026-03-04T00:00:00Z</updated>
+    <summary>Support page for contributions and donations.</summary>
+    <content type="html">&lt;p&gt;Support page for contributions and donations.&lt;/p&gt;&lt;img src="https://humairaambreen.github.io/assets/og.png" alt="Support page preview" /&gt;</content>
+  </entry>
+</feed>
