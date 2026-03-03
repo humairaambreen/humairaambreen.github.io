@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>Humaira Ambreen</title>
+    <link>https://humairaambreen.github.io/</link>
+    <description>Portfolio updates, projects, support information, and resume updates from Humaira Ambreen.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Mar 2026 00:00:00 GMT</lastBuildDate>
+    <managingEditor>hussainhuma2004@gmail.com (Humaira Ambreen)</managingEditor>
+    <webMaster>hussainhuma2004@gmail.com (Humaira Ambreen)</webMaster>
+    <atom:link href="https://humairaambreen.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <image>
+      <url>https://humairaambreen.github.io/assets/og.png</url>
+      <title>Humaira Ambreen</title>
+      <link>https://humairaambreen.github.io/</link>
+    </image>
+
+    <item>
+      <title>Luveian — Full-Stack Internship Project</title>
+      <link>https://luveian.com</link>
+      <guid isPermaLink="true">https://luveian.com</guid>
+      <pubDate>Tue, 01 Oct 2024 00:00:00 GMT</pubDate>
+      <description>Production web platform work: full-stack development, UX/UI design, and performance optimization.</description>
+      <enclosure url="https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg" type="image/jpeg" />
+      <media:content url="https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg" medium="image" type="image/jpeg" />
+      <content:encoded><![CDATA[
+        <p>Production web platform work: full-stack development, UX/UI design, and performance optimization.</p>
+        <img src="https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg" alt="Luveian project cover" />
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>Lost &amp; Found — Campus PWA</title>
+      <link>https://lostandfound-0brr.onrender.com/</link>
+      <guid isPermaLink="true">https://lostandfound-0brr.onrender.com/</guid>
+      <pubDate>Tue, 01 Jul 2025 00:00:00 GMT</pubDate>
+      <description>Progressive web app for campus lost &amp; found workflows with real-time sync and offline support.</description>
+      <enclosure url="https://humairaambreen.github.io/assets/l&amp;f.png" type="image/png" />
+      <media:content url="https://humairaambreen.github.io/assets/l&amp;f.png" medium="image" type="image/png" />
+      <content:encoded><![CDATA[
+        <p>Progressive web app for campus lost &amp; found workflows with real-time sync and offline support.</p>
+        <img src="https://humairaambreen.github.io/assets/l&f.png" alt="Lost and Found project cover" />
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>KEC — College Resource Portal</title>
+      <link>https://kec-live.netlify.app/</link>
+      <guid isPermaLink="true">https://kec-live.netlify.app/</guid>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
+      <description>Lightweight college resource hub with accessibility-first design and in-browser ID card generation.</description>
+      <enclosure url="https://humairaambreen.github.io/assets/kec.png" type="image/png" />
+      <media:content url="https://humairaambreen.github.io/assets/kec.png" medium="image" type="image/png" />
+      <content:encoded><![CDATA[
+        <p>Lightweight college resource hub with accessibility-first design and in-browser ID card generation.</p>
+        <img src="https://humairaambreen.github.io/assets/kec.png" alt="KEC project cover" />
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>Portfolio Home</title>
+      <link>https://humairaambreen.github.io/</link>
+      <guid isPermaLink="true">https://humairaambreen.github.io/</guid>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Main portfolio page with projects, services, and contact information.</description>
+      <enclosure url="https://humairaambreen.github.io/assets/og.png" type="image/png" />
+      <media:content url="https://humairaambreen.github.io/assets/og.png" medium="image" type="image/png" />
+      <content:encoded><![CDATA[
+        <p>Main portfolio page with projects, services, and contact information.</p>
+        <img src="https://humairaambreen.github.io/assets/og.png" alt="Portfolio preview" />
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>Resume</title>
+      <link>https://humairaambreen.github.io/resume/</link>
+      <guid isPermaLink="true">https://humairaambreen.github.io/resume/</guid>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Professional resume of Humaira Ambreen.</description>
+      <enclosure url="https://humairaambreen.github.io/assets/og.png" type="image/png" />
+      <media:content url="https://humairaambreen.github.io/assets/og.png" medium="image" type="image/png" />
+      <content:encoded><![CDATA[
+        <p>Professional resume of Humaira Ambreen.</p>
+        <img src="https://humairaambreen.github.io/assets/og.png" alt="Resume preview" />
+      ]]></content:encoded>
+    </item>
+
+    <item>
+      <title>Support</title>
+      <link>https://humairaambreen.github.io/support/</link>
+      <guid isPermaLink="true">https://humairaambreen.github.io/support/</guid>
+      <pubDate>Wed, 04 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Support page for contributions and donations.</description>
+      <enclosure url="https://humairaambreen.github.io/assets/og.png" type="image/png" />
+      <media:content url="https://humairaambreen.github.io/assets/og.png" medium="image" type="image/png" />
+      <content:encoded><![CDATA[
+        <p>Support page for contributions and donations.</p>
+        <img src="https://humairaambreen.github.io/assets/og.png" alt="Support page preview" />
+      ]]></content:encoded>
+    </item>
+  </channel>
+</rss>
