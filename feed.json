@@ -1,0 +1,110 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Humaira Ambreen",
+  "home_page_url": "https://humairaambreen.github.io/",
+  "feed_url": "https://humairaambreen.github.io/feed.json",
+  "description": "Portfolio updates, support information, and resume updates from Humaira Ambreen.",
+  "language": "en-US",
+  "icon": "https://humairaambreen.github.io/assets/og.png",
+  "favicon": "https://humairaambreen.github.io/assets/favicon/favicon.ico",
+  "author": {
+    "name": "Humaira Ambreen",
+    "url": "https://humairaambreen.github.io/",
+    "avatar": "https://humairaambreen.github.io/assets/og.png"
+  },
+  "items": [
+    {
+      "id": "https://luveian.com",
+      "url": "https://luveian.com",
+      "title": "Luveian — Full-Stack Internship Project",
+      "content_text": "Production web platform work: full-stack development, UX/UI design, and performance optimization.",
+      "image": "https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg",
+      "date_published": "2024-10-01T00:00:00Z",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://raw.githubusercontent.com/aryansrao/luveian/refs/heads/main/assets/logowbg.jpeg",
+          "mime_type": "image/jpeg",
+          "title": "Luveian project cover"
+        }
+      ]
+    },
+    {
+      "id": "https://lostandfound-0brr.onrender.com/",
+      "url": "https://lostandfound-0brr.onrender.com/",
+      "title": "Lost & Found — Campus PWA",
+      "content_text": "Progressive web app for campus lost & found workflows with real-time sync and offline support.",
+      "image": "https://humairaambreen.github.io/assets/l&f.png",
+      "date_published": "2025-07-01T00:00:00Z",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://humairaambreen.github.io/assets/l&f.png",
+          "mime_type": "image/png",
+          "title": "Lost and Found project cover"
+        }
+      ]
+    },
+    {
+      "id": "https://kec-live.netlify.app/",
+      "url": "https://kec-live.netlify.app/",
+      "title": "KEC — College Resource Portal",
+      "content_text": "Lightweight college resource hub with accessibility-first design and in-browser ID card generation.",
+      "image": "https://humairaambreen.github.io/assets/kec.png",
+      "date_published": "2024-12-01T00:00:00Z",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://humairaambreen.github.io/assets/kec.png",
+          "mime_type": "image/png",
+          "title": "KEC project cover"
+        }
+      ]
+    },
+    {
+      "id": "https://humairaambreen.github.io/",
+      "url": "https://humairaambreen.github.io/",
+      "title": "Portfolio Home",
+      "content_text": "Main portfolio page with projects, services, and contact information.",
+      "image": "https://humairaambreen.github.io/assets/og.png",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://humairaambreen.github.io/assets/og.png",
+          "mime_type": "image/png",
+          "title": "Portfolio preview"
+        }
+      ]
+    },
+    {
+      "id": "https://humairaambreen.github.io/resume/",
+      "url": "https://humairaambreen.github.io/resume/",
+      "title": "Resume",
+      "content_text": "Professional resume of Humaira Ambreen.",
+      "image": "https://humairaambreen.github.io/assets/og.png",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://humairaambreen.github.io/assets/og.png",
+          "mime_type": "image/png",
+          "title": "Resume preview"
+        }
+      ]
+    },
+    {
+      "id": "https://humairaambreen.github.io/support/",
+      "url": "https://humairaambreen.github.io/support/",
+      "title": "Support",
+      "content_text": "Support page for contributions and donations.",
+      "image": "https://humairaambreen.github.io/assets/og.png",
+      "date_modified": "2026-03-04T00:00:00Z",
+      "attachments": [
+        {
+          "url": "https://humairaambreen.github.io/assets/og.png",
+          "mime_type": "image/png",
+          "title": "Support page preview"
+        }
+      ]
+    }
+  ]
+}
